@@ -1,0 +1,46 @@
+.jumbotron {
+	
+	background-image: url("images/NZLogo.jpg");
+}
+h2 {
+	color:white;
+}
+h3{
+	color:black;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+.navbar {
+	min-height: 50px;
+  }
+  
+  .navbar-header .navbar-brand {
+	padding: 0 15px;
+	height: 50px;
+	line-height: 50px;
+  }
+  
+	.nav-link{
+		font-size: 20px;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		margin-left: 35px;
+	}
+
+.wrapper {
+  text-align: center;
+}
+.time {
+  color: black;
+  font-size: 6em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.label {
+  font-size: 2em;
+  display: block;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+  }
