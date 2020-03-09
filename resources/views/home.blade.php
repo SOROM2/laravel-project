@@ -209,10 +209,13 @@
                                 <label for="level">Mood:</label>
                                 <input type="text" class="form-control" id="level"
                                     placeholder="Enter mood level (1 - 10)" name="level">
+                                    @if ($errors->has('level'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('level') }}
+                                        </span>
+                                     @endif  
                             </div>
-
-
-                            <button type="submit" name="mood" value="mood" class="btn btn-secondary">Submit</button>
+                          <button type="submit" name="mood" value="mood" class="btn btn-secondary">Submit</button>
                         </form>
 
 

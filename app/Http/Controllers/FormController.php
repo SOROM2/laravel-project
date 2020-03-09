@@ -121,6 +121,13 @@ if(isset($formData['sleep']))
 //store a users mood
 if(isset($formData['mood']))
     {
+        $rules = [
+         'level'=>'required|integer|between:1,10'
+        ];
+        $messages = [
+            'level.between' => 'please enter a number between 1 & 10'
+        ];
+        $request->validate($rules,$messages);
         $mood = new Mood();
 	    $mood ->date=$request->get('date');
         $mood ->level=$request->get('level');
