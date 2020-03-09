@@ -271,7 +271,7 @@ public function homelist()
             
             DB::raw('avg(hours) as hours'))
             ->where('user_id',auth()->id())
-            ->groupBy('user_id')
+            ->groupBy('user_id','date')
             ->orderBy('date', 'desc')
             ->get();
             //dd($mySleepData);
