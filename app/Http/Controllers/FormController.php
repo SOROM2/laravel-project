@@ -42,6 +42,7 @@ class FormController extends Controller
     if(isset($formData['drink']))
     {
         $rules = [
+            'date'=>'required',
             'number'=>'required|integer|min:1',
             'kilojoules'=>'required|integer|min:1',
             'calories'=>'required|integer|min:1'
