@@ -41,6 +41,16 @@ class FormController extends Controller
 //store a users drinks
     if(isset($formData['drink']))
     {
+        $rules = [
+            'number'=>'required|integer|min:1',
+            'kilojoules'=>'required|integer|min:1',
+            'calories'=>'required|integer|min:1'
+           ];
+           $messages = [
+               'number.min' => 'please enter a number above 1',
+               'kilojoules.min' => 'please enter a number above 1',
+               'calories.min' => 'please enter a number above 1'
+           ];
         $drink = new Drink();
 	    $drink->date=$request->get('date');
         $drink->type=$request->get('type');
@@ -140,6 +150,7 @@ if(isset($formData['mood']))
 //store a users weight
 if(isset($formData['weight']))
     {
+        
         $weight = new Weight();
 	    $weight ->date=$request->get('date');
         $weight ->Kilograms =$request->get('Kilograms');
