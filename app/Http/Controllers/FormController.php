@@ -109,6 +109,15 @@ if(isset($formData['snack']))
 //store a users sleep
 if(isset($formData['sleep']))
     {
+        $rules = [
+            'date'=>'required',
+            'hours'=>'required|integer|min:0'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'hours.min'=>'Please enter a number greater than or equal to 0'
+        ];
+        $request->validate($rules, $messages);
         $sleep = new Sleep();
 	    $sleep ->date=$request->get('date');
         $sleep ->hours=$request->get('hours');
