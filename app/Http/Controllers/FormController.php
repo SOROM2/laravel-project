@@ -122,10 +122,12 @@ if(isset($formData['sleep']))
 if(isset($formData['mood']))
     {
         $rules = [
+         'date'=>'required',
          'level'=>'required|integer|between:1,10'
         ];
         $messages = [
-            'level.between' => 'please enter a number between 1 & 10'
+            'level.between' => 'please enter a number between 1 & 10',
+            'date.required' => 'date is required'
         ];
         $request->validate($rules,$messages);
         $mood = new Mood();

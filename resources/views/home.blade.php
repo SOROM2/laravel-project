@@ -204,6 +204,11 @@
                             <div class="form-group">
                                 <label for="date">Date</label>
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('date') }}
+                                        </span>
+                                     @endif  
                             </div>
                             <div class="form-group">
                                 <label for="level">Mood:</label>
