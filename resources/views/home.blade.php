@@ -232,6 +232,11 @@
                                 <label for="hours">Sleep:</label>
                                 <input type="number" class="form-control" id="hours" placeholder="Enter sleep hours"
                                     name="hours">
+                                @if ($errors->has('hour'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('hour') }}
+                                    </span>
+                                @endif
                             </div>
 
 
