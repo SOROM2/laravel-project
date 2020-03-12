@@ -119,6 +119,15 @@ if(isset($formData['snack']))
 //store a users sleep
 if(isset($formData['sleep']))
     {
+        $rules = [
+            'date'=>'required',
+            'hours'=>'required|integer|min:0'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'hours.min'=>'Please enter a number greater than or equal to 0'
+        ];
+        $request->validate($rules, $messages);
         $sleep = new Sleep();
 	    $sleep ->date=$request->get('date');
         $sleep ->hours=$request->get('hours');
@@ -132,10 +141,12 @@ if(isset($formData['sleep']))
 if(isset($formData['mood']))
     {
         $rules = [
+         'date'=>'required',
          'level'=>'required|integer|between:1,10'
         ];
         $messages = [
-            'level.between' => 'please enter a number between 1 & 10'
+            'level.between' => 'please enter a number between 1 & 10',
+            'date.required' => 'date is required'
         ];
         $request->validate($rules,$messages);
         $mood = new Mood();
