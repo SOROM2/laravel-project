@@ -77,6 +77,15 @@ class FormController extends Controller
 //store a users snacks
 if(isset($formData['snack']))
     {
+        $rules = [
+            'date'=>'required',
+            'type'=>'required'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'type.required'=>'Please enter a type of Snack'
+        ];
+        $request->validate($rules, $messages);
         $snack = new Snack();
 	    $snack ->date=$request->get('date');
         $snack ->type=$request->get('type');
@@ -117,6 +126,7 @@ if(isset($formData['sleep']))
             'date.required'=>'Please enter a date',
             'hours.min'=>'Please enter a number greater than or equal to 0'
         ];
+
         $request->validate($rules, $messages);
         $sleep = new Sleep();
 	    $sleep ->date=$request->get('date');
@@ -124,7 +134,6 @@ if(isset($formData['sleep']))
         //the owner id is the current users id
         $sleep ->user_id=auth()->id();
         $sleep ->save();
-
         return redirect('home')->with('success','Your sleep has been recorded');
     }
 //store a users mood
@@ -151,6 +160,15 @@ if(isset($formData['mood']))
 //store a users weight
 if(isset($formData['weight']))
     {
+        $rules = [
+            'date'=>'required',
+            'Kilograms'=>'required'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'Kilograms.required'=>'Please enter a weight'
+        ];
+                $request->validate($rules,$messages);
         $weight = new Weight();
 	    $weight ->date=$request->get('date');
         $weight ->Kilograms =$request->get('Kilograms');
