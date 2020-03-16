@@ -171,7 +171,6 @@ if(isset($formData['mood']))
 //store a users weight
 if(isset($formData['weight']))
     {
-<<<<<<< HEAD
         $rules = [
             'date'=>'required',
             'Kilograms'=>'required'
@@ -181,9 +180,6 @@ if(isset($formData['weight']))
             'Kilograms.required'=>'Please enter a weight'
         ];
                 $request->validate($rules,$messages);
-=======
-        
->>>>>>> d62b3cd4e41feed2824b9c5f0de615ecd04d4ea5
         $weight = new Weight();
 	    $weight ->date=$request->get('date');
         $weight ->Kilograms =$request->get('Kilograms');
