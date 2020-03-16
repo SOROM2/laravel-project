@@ -204,6 +204,11 @@
                             <div class="form-group">
                                 <label for="date">Date</label>
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('date') }}
+                                        </span>
+                                     @endif  
                             </div>
                             <div class="form-group">
                                 <label for="level">Mood:</label>
@@ -232,6 +237,11 @@
                                 <label for="hours">Sleep:</label>
                                 <input type="number" class="form-control" id="hours" placeholder="Enter sleep hours"
                                     name="hours">
+                                @if ($errors->has('hour'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('hour') }}
+                                    </span>
+                                @endif
                             </div>
 
 
@@ -273,11 +283,21 @@
                             <div class="form-group">
                                 <label for="date">Date</label>
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('date') }}
+                                        </span>
+                                     @endif  
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <input type="text" class="form-control" id="type" placeholder="Enter snack type"
                                     name="type">
+                                    @if ($errors->has('type'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('type') }}
+                                        </span>
+                                     @endif  
                             </div>
                             <div class="form-group">
                                 <label for="kilojoules">Kilojoules</label>
@@ -285,7 +305,7 @@
                                     placeholder="Enter number of kilojoules" name="kilojoules">
                             </div>
                             <div class="form-group">
-                                <label for="calories">Calories</label>
+                                <label for="calories">Or Calories</label>
                                 <input type="number" class="form-control" id="calories"
                                     placeholder="Enter number of calories" name="calories">
                             </div>
@@ -330,11 +350,21 @@
                             <div class="form-group">
                                 <label for="date">Date</label>
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('date') }}
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="Kilograms">Weight</label>
                                 <input type="text" class="form-control" id="Kilograms"
                                     placeholder="Enter weight in Kilograms" name="Kilograms">
+                                    @if ($errors->has('Kilograms'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('Kilograms') }}
+                                    </span>
+                                @endif
                             </div>
 
 

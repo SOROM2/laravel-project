@@ -30,7 +30,7 @@ Route::get('/tables','FormController@list');
 Route::get('/graphs','FormController@chart');
 Route::get('calendar','EventController@calendar');
 Route::post('/home','FormController@store');
-
+Route::post('/menu1','FormController@store');
 Route::post('/list','FormController@list');
 Auth::routes();
 Route::get('/list',function(){
