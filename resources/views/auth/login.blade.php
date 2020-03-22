@@ -15,11 +15,11 @@
                             <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail or Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="login" type="text" class="form-control{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}" name="login" value="{{ old('username') ?: old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="text" class="form-control{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('username') ?: old('email') }}" required autocomplete="email" autofocus>
 
-                                @if ($errors->has('username') || $errors->has('email'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
