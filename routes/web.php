@@ -16,7 +16,11 @@ Route::post('/results',PageController@return);
 
 Route::get('/', function()
 {
-    return view('welcome');
+    if (Auth::check()) {
+        return redirect('/home');
+    } else {
+        return view('welcome');
+    }
 });
 
 
