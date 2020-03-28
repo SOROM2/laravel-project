@@ -53,7 +53,7 @@ default;
                     $value->type,
                     true,
                     new \DateTime($value->date),
-                    new \DateTime($value->end_date.'+1 day'),
+                    new \DateTime($value->date),
                     null,
                     [
                         'color'=>$color,

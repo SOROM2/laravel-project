@@ -203,16 +203,32 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="date">Date</label>
+<<<<<<< HEAD
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
+=======
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('date') }}
+                                        </span>
+                                     @endif  
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
                             <div class="form-group">
                                 <label for="level">Mood:</label>
                                 <input type="text" class="form-control" id="level"
+<<<<<<< HEAD
                                     placeholder="Enter mood level (1 - 10)" name="level" required>
+=======
+                                    placeholder="Enter mood level (1 - 10)" name="level">
+                                    @if ($errors->has('level'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('level') }}
+                                        </span>
+                                     @endif  
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
-
-
-                            <button type="submit" name="mood" value="mood" class="btn btn-secondary">Submit</button>
+                          <button type="submit" name="mood" value="mood" class="btn btn-secondary">Submit</button>
                         </form>
 
 
@@ -228,7 +244,16 @@
                             <div class="form-group">
                                 <label for="hours">Sleep:</label>
                                 <input type="number" class="form-control" id="hours" placeholder="Enter sleep hours"
+<<<<<<< HEAD
                                     name="hours" required>
+=======
+                                    name="hours">
+                                @if ($errors->has('hour'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('hour') }}
+                                    </span>
+                                @endif
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
 
 
@@ -269,12 +294,30 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="date">Date</label>
+<<<<<<< HEAD
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
+=======
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('date') }}
+                                        </span>
+                                     @endif  
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <input type="text" class="form-control" id="type" placeholder="Enter snack type"
+<<<<<<< HEAD
                                     name="type" required>
+=======
+                                    name="type">
+                                    @if ($errors->has('type'))
+                                        <span style="color:red;">
+                                         {{ $errors->first('type') }}
+                                        </span>
+                                     @endif  
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
                             <div class="form-group">
                                 <label for="kilojoules">Kilojoules</label>
@@ -282,7 +325,7 @@
                                     placeholder="Enter number of kilojoules" name="kilojoules" required>
                             </div>
                             <div class="form-group">
-                                <label for="calories">Calories</label>
+                                <label for="calories">Or Calories</label>
                                 <input type="number" class="form-control" id="calories"
                                     placeholder="Enter number of calories" name="calories" required>
                             </div>
@@ -326,12 +369,30 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="date">Date</label>
+<<<<<<< HEAD
                                 <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
+=======
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('date') }}
+                                    </span>
+                                @endif
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
                             <div class="form-group">
                                 <label for="Kilograms">Weight</label>
                                 <input type="text" class="form-control" id="Kilograms"
+<<<<<<< HEAD
                                     placeholder="Enter weight in Kilograms" name="Kilograms" required>
+=======
+                                    placeholder="Enter weight in Kilograms" name="Kilograms">
+                                    @if ($errors->has('Kilograms'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('Kilograms') }}
+                                    </span>
+                                @endif
+>>>>>>> b8d29a895737b910126ebf02f487fd2a53e58a97
                             </div>
 
 

@@ -41,6 +41,17 @@ class FormController extends Controller
 //store a users drinks
     if(isset($formData['drink']))
     {
+        $rules = [
+            'date'=>'required',
+            'number'=>'required|integer|min:1',
+            'kilojoules'=>'required|integer|min:1',
+            'calories'=>'required|integer|min:1'
+           ];
+           $messages = [
+               'number.min' => 'please enter a number above 1',
+               'kilojoules.min' => 'please enter a number above 1',
+               'calories.min' => 'please enter a number above 1'
+           ];
         $drink = new Drink();
 	    $drink->date=$request->get('date');
         $drink->type=$request->get('type');
@@ -77,6 +88,15 @@ class FormController extends Controller
 //store a users snacks
 if(isset($formData['snack']))
     {
+        $rules = [
+            'date'=>'required',
+            'type'=>'required'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'type.required'=>'Please enter a type of Snack'
+        ];
+        $request->validate($rules, $messages);
         $snack = new Snack();
 	    $snack ->date=$request->get('date');
         $snack ->type=$request->get('type');
@@ -109,18 +129,36 @@ if(isset($formData['snack']))
 //store a users sleep
 if(isset($formData['sleep']))
     {
+        $rules = [
+            'date'=>'required',
+            'hours'=>'required|integer|min:0'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'hours.min'=>'Please enter a number greater than or equal to 0'
+        ];
+
+        $request->validate($rules, $messages);
         $sleep = new Sleep();
 	    $sleep ->date=$request->get('date');
         $sleep ->hours=$request->get('hours');
         //the owner id is the current users id
         $sleep ->user_id=auth()->id();
         $sleep ->save();
-
         return redirect('home')->with('success','Your sleep has been recorded');
     }
 //store a users mood
 if(isset($formData['mood']))
     {
+        $rules = [
+         'date'=>'required',
+         'level'=>'required|integer|between:1,10'
+        ];
+        $messages = [
+            'level.between' => 'please enter a number between 1 & 10',
+            'date.required' => 'date is required'
+        ];
+        $request->validate($rules,$messages);
         $mood = new Mood();
 	    $mood ->date=$request->get('date');
         $mood ->level=$request->get('level');
@@ -133,6 +171,15 @@ if(isset($formData['mood']))
 //store a users weight
 if(isset($formData['weight']))
     {
+        $rules = [
+            'date'=>'required',
+            'Kilograms'=>'required'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'Kilograms.required'=>'Please enter a weight'
+        ];
+                $request->validate($rules,$messages);
         $weight = new Weight();
 	    $weight ->date=$request->get('date');
         $weight ->Kilograms =$request->get('Kilograms');
@@ -271,7 +318,7 @@ public function homelist()
             
             DB::raw('avg(hours) as hours'))
             ->where('user_id',auth()->id())
-            ->groupBy('user_id')
+            ->groupBy('user_id','date')
             ->orderBy('date', 'desc')
             ->get();
             //dd($mySleepData);
