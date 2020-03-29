@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+
+.col-lg-6 {
+  margin-right:20px;
+  margin-left: 250px;
+}
+.radiolabel{
+    margin-right:20px;
+  margin-left: 20px;
+}
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -68,16 +79,18 @@
                         </div>
 
                         <div class="form-group row">
-
+                        
+                        <div class="col-lg-6">
+                        <label for="male">{{ __('Male') }}</label>
+                               <input class="radiolabel" type="radio" id="male" name="gender" value="male">
                             
+                              
 
-                                <input type="radio" id="male" name="gender" value="male">
-                                <label for="male" class="col-md-4 col-form-label">{{ __('Male') }}</label>
-
+                               <label class="radiolabel"  for="female">{{ __('Female') }}</label>
                                 <input type="radio" id="female" name="gender" value="female">
-                                <label for="female" class="col-md-4 col-form-label">{{ __('Female') }}</label><br>
-
-                            
+                                
+                               </div>
+                                                         
                         </div>
 
                         <div class="form-group row">
