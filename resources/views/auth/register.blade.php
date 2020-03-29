@@ -40,6 +40,47 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="weightStarting" class="col-md-4 col-form-label text-md-right">{{ __('Current Weight - Kilograms') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="weightStarting" type="number" class="form-control @error('weightStarting') is-invalid @enderror" name="weightStarting" value="{{ old('weightStarting') }}" required autocomplete="weightStarting">
+
+                                @error('weightStarting')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Curret Height - Centimeters') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="height" type="number" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required autocomplete="height">
+
+                                @error('height')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            
+
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male" class="col-md-4 col-form-label">{{ __('Male') }}</label>
+
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female" class="col-md-4 col-form-label">{{ __('Female') }}</label><br>
+
+                            
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
