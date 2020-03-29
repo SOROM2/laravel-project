@@ -25,6 +25,10 @@ Route::get('/createPet',function(){
     return view('createPet');
 });
 
+
+Route::resource('mood', 'MoodController');
+
+
 Route::get('/home','FormController@homelist');
 Route::get('/tables','FormController@list');
 Route::get('/graphs','FormController@chart');

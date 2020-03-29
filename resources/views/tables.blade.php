@@ -151,7 +151,7 @@ h3 {
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md">
             <div class="bdr">
                 <h3 class="text-center">
                     Lifestyle Logger Tables
@@ -189,6 +189,7 @@ h3 {
                                 <tr class="mood">
                                     <th>Date</th>
                                     <th>Level</th>
+                                    <th>Edit/delete</th>
 
                                 </tr>
                             </thead>
@@ -196,7 +197,9 @@ h3 {
                                 @foreach($moods as $mood)
                                 <tr>
                                     <td class="table-success">{{$mood->date}}</td>
-                                    <td class="table-success">{{$mood->level}}</td>
+                                    <td class="table-success">{{$mood->level}}</td>        
+                                    <td class ="table-success"><a href="/mood/{{$mood->id}}/edit" class="btn btn-primary">Edit Mood</a></ted>
+                          
                                 </tr>
                                 @endforeach
                             </tbody>
