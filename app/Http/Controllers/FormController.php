@@ -160,6 +160,7 @@ if(isset($formData['mood']))
         ];
         $request->validate($rules,$messages);
         $mood = new Mood();
+        $mood->id=$request->get('id');
 	    $mood ->date=$request->get('date');
         $mood ->level=$request->get('level');
         //the user id is the current users id

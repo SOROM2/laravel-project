@@ -59,7 +59,7 @@ class MoodController extends Controller
     {
         $mood = Mood::find($id);
 
-        return view('mood.edit')->with('mood', $mood); 
+        return view('mood.edit')->with('mood',$mood); 
 
     }
 
@@ -72,20 +72,14 @@ class MoodController extends Controller
      */
     public function update(Request $request, Mood $mood)
     {
-        $mood = Mood::findOrFail($id);
+        $mood = Mood::find($request->input('id'));
+        $request->validate([
+            'date' => 'required',
+            'level' => 'required',         
+        ]);
+        $mood->update($request->all());
+        return redirect('tables')->with('success','Your Mood has been Updated ');
 
-    $this->validate($request, [
-        'date'=>'required',
-        'level'=>'required|integer|between:1,10'
-    ]);
-
-    $input = $request->all();
-
-    $mood->fill($input)->save();
-
-    Session::flash('flash_message', 'Task successfully added!');
-
-    return redirect()->back();
     }
 
     /**

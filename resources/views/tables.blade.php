@@ -155,7 +155,16 @@ h3 {
             <div class="bdr">
                 <h3 class="text-center">
                     Lifestyle Logger Tables
+                    
                 </h3>
+                @if ($message = Session::get('success'))
+            <br>
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">close</button>
+                <strong>{{ $message }}</strong>
+            </div>
+
+            @endif
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -187,6 +196,7 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="mood">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>Level</th>
                                     <th>Edit/delete</th>
@@ -196,10 +206,12 @@ h3 {
                             <tbody>
                                 @foreach($moods as $mood)
                                 <tr>
+                                    <td class ="table-success">{{$mood->id}}</td>
                                     <td class="table-success">{{$mood->date}}</td>
-                                    <td class="table-success">{{$mood->level}}</td>        
-                                    <td class ="table-success"><a href="/mood/{{$mood->id}}/edit" class="btn btn-primary">Edit Mood</a></ted>
-                          
+                                    <td class="table-success">{{$mood->level}}</td>  
+
+                                    <td class ="table-success"><a href="/mood/{{$mood->id}}/edit" class="btn btn-primary">Edit Mood</a></td>
+                     
                                 </tr>
                                 @endforeach
                             </tbody>

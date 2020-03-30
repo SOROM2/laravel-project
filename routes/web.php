@@ -29,6 +29,9 @@ Route::get('/createPet',function(){
 Route::resource('mood', 'MoodController');
 
 
+Route::post('edit/{id}', 'MoodController@update')->name('mood.update');
+
+
 Route::get('/home','FormController@homelist');
 Route::get('/tables','FormController@list');
 Route::get('/graphs','FormController@chart');

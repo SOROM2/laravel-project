@@ -1,37 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.form-group {
+  margin-top: 30px;
+  margin-right:250px;
+  margin-left: 250px;
+}
 
-<div id="home" class="container tab-pane in active">
+.btn-success{
+    margin-top: 30px;
+    margin-right:250px;
+  margin-left: 250px;
+  
+}
 
-                        <form action="{{url()->action('[MoodController@update, $mood->id])}}" method="POST">
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
-                                @if ($errors->has('date'))
-                                        <span style="color:red;">
-                                         {{ $errors->first('date') }}
-                                        </span>
-                                     @endif  
-                            </div>
-                            <div class="form-group">
-                                <label for="level">Mood:</label>
-                                <input type="text" class="form-control" id="level"
-                                    placeholder="Enter mood level (1 - 10)" name="level">
-                                    @if ($errors->has('level'))
-                                        <span style="color:red;">
-                                         {{ $errors->first('level') }}
-                                        </span>
-                                     @endif  
-                            </div>
-                          <button type="submit" name="mood" value="mood" class="btn btn-secondary">Submit</button>
-                          <a href='/tables' class="btn btn-secondary"> Go Back</a>
+h3{
+    margin-top: 30px;
+}
 
-                        </form>
-                      
+</style>
+<h3 class="text-center">  Edit Your Mood  </h3>
+<form action="{{route('mood.update', $mood->id )}}" method = "post">
+            @csrf
+            
+                <div class="form-group">
+                    <label for ="date"> Date: </label>
+                    <input type="date" class = "form-control" id ="date" name="date" value="{{ $mood->date }}" >
+                </div>
+                <div class="form-group">
+                    <label for ="level">Level:</label>
+                    <input type="text" class ="form-control" id="level" name="level" value="{{ $mood->level }}" >
+                </div>
+                
+            <input type="hidden" name="id" value = "{{$mood->id}}">
+                <button type="submit" class="btn btn-success">Update</button>
 
-
-                    </div>
+    </form>
 
 @endsection
