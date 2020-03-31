@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mood;
+use App\Sleep;
 use Illuminate\Http\Request;
 
-class MoodController extends Controller
+class SleepController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MoodController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Sleep  $sleep
      * @return \Illuminate\Http\Response
      */
-    public function show(Mood $mood)
+    public function show(Sleep $sleep)
     {
         //
     }
@@ -52,47 +52,45 @@ class MoodController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Sleep  $sleep
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $mood = Mood::find($id);
+        $sleep = Sleep::find($id);
 
-        return view('mood.edit')->with('mood',$mood); 
-
+        return view('sleep.edit')->with('sleep',$sleep); 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mood  $mood
+     * @param  \App\Sleep  $sleep
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mood $mood)
+    public function update(Request $request, Sleep $sleep)
     {
-        $mood = Mood::find($request->input('id'));
+        $sleep = Sleep::find($request->input('id'));
         $request->validate([
-            'date' => 'required',
-            'level' => 'required',         
+            'date'=>'required',
+            'hours'=>'required|integer|min:0'      
         ]);
-        $mood->update($request->all());
-        return redirect('tables')->with('success','Your Mood has been Updated ');
-
+        $sleep->update($request->all());
+        return redirect('tables')->with('success','Your Sleep has been Updated ');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Sleep  $sleep
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mood $mood)
+    public function destroy(Sleep $sleep)
     {
-        $mood->delete();
+        $sleep->delete();
 
-        return redirect('tables')->with('success','Mood deleted successfully');
-
+        return redirect('tables')->with('success','Sleep deleted successfully');
     }
 }

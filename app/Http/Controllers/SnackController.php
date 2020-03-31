@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mood;
+use App\Snack;
 use Illuminate\Http\Request;
 
-class MoodController extends Controller
+class SnackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MoodController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function show(Mood $mood)
+    public function show(Snack $snack)
     {
         //
     }
@@ -52,47 +52,46 @@ class MoodController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Snack  $snack
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $mood = Mood::find($id);
+        $snack = Snack::find($id);
 
-        return view('mood.edit')->with('mood',$mood); 
-
+        return view('snack.edit')->with('snack',$snack); 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mood  $mood
+     * @param  \App\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mood $mood)
+    public function update(Request $request, Snack $snack)
     {
-        $mood = Mood::find($request->input('id'));
+        $snack = Snack::find($request->input('id'));
         $request->validate([
-            'date' => 'required',
-            'level' => 'required',         
+            'date'=>'required',
+            'type'=>'required'        
         ]);
-        $mood->update($request->all());
-        return redirect('tables')->with('success','Your Mood has been Updated ');
 
+            $snack->update($request->all());
+        
+        return redirect('tables')->with('success','Your Snack has been Updated ');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mood $mood)
+    public function destroy(Snack $snack)
     {
-        $mood->delete();
+        $snack->delete();
 
-        return redirect('tables')->with('success','Mood deleted successfully');
-
+        return redirect('tables')->with('success','Snack deleted successfully');
     }
 }

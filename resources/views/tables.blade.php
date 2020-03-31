@@ -199,7 +199,8 @@ h3 {
                                     <th> id </th>
                                     <th>Date</th>
                                     <th>Level</th>
-                                    <th>Edit/delete</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
 
                                 </tr>
                             </thead>
@@ -209,9 +210,14 @@ h3 {
                                     <td class ="table-success">{{$mood->id}}</td>
                                     <td class="table-success">{{$mood->date}}</td>
                                     <td class="table-success">{{$mood->level}}</td>  
-
                                     <td class ="table-success"><a href="/mood/{{$mood->id}}/edit" class="btn btn-primary">Edit Mood</a></td>
-                     
+                                    <td class ='table-success'>
+                                    <form action="{{action('MoodController@destroy', $mood->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -221,16 +227,27 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="sleep">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>hours</th>
-
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($sleeps as $sleep)
                                 <tr>
+                                    <td class ="table-info">{{$sleep->id}}</td>
                                     <td class="table-info">{{$sleep->date}}</td>
                                     <td class="table-info">{{$sleep->hours}}</td>
+                                    <td class ="table-info"><a href="/sleep/{{$sleep->id}}/edit" class="btn btn-primary">Edit Sleep</a></td>
+                                    <td class ='table-info'>
+                                    <form action="{{action('SleepController@destroy', $sleep->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
 
@@ -241,19 +258,32 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="workout">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>Activity</th>
                                     <th>Duration</th>
                                     <th>Distance</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($workouts as $workout)
                                 <tr>
+                                    <td class ="table-warning">{{$workout->id}}</td>
                                     <td class="table-warning">{{$workout->date}}</td>
                                     <td class="table-warning">{{$workout->type}}</td>
                                     <td class="table-warning">{{$workout->minutes}}</td>
                                     <td class="table-warning">{{$workout->kilometres}}</td>
+                                    <td class ="table-warning"><a href="/workout/{{$workout->id}}/edit" class="btn btn-primary">Edit Workout</a></td>
+                                    <td class ='table-warning'>
+                                    <form action="{{action('WorkoutController@destroy', $workout->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -263,19 +293,31 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="snack">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>Item</th>
                                     <th>Kilojoules</th>
                                     <th>Calories</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($snacks as $snack)
                                 <tr>
+                                    <td class ="table-danger">{{$snack->id}}</td>
                                     <td class="table-danger">{{$snack->date}}</td>
                                     <td class="table-danger">{{$snack->type}}</td>
                                     <td class="table-danger">{{$snack->kilojoules}}</td>
                                     <td class="table-danger">{{$snack->calories}}</td>
+                                    <td class ="table-danger"><a href="/snack/{{$snack->id}}/edit" class="btn btn-primary">Edit Snack</a></td>
+                                    <td class ='table-danger'>
+                                    <form action="{{action('SnackController@destroy', $snack->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -285,21 +327,33 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="drink">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>Item</th>
                                     <th>Std Drinks</th>
                                     <th>Kilojoules</th>
                                     <th>Calories</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($drinks as $drink)
                                 <tr>
+                                    <td class ="table-primary">{{$drink->id}}</td>
                                     <td class="table-primary">{{$drink->date}}</td>
                                     <td class="table-primary">{{$drink->type}}</td>
                                     <td class="table-primary">{{$drink->number}}</td>
                                     <td class="table-primary">{{$drink->kilojoules}}</td>
                                     <td class="table-primary">{{$drink->calories}}</td>
+                                    <td class ="table-primary"><a href="/drink/{{$drink->id}}/edit" class="btn btn-primary">Edit Drink</a></td>
+                                    <td class ='table-primary'>
+                                    <form action="{{action('DrinkController@destroy', $drink->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -309,15 +363,27 @@ h3 {
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="weight">
+                                    <th> id </th>
                                     <th>Date</th>
                                     <th>Weight</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($weights as $weight)
                                 <tr>
+                                    <td class ="weight-data">{{$weight->id}}</td>
                                     <td class="weight-data">{{$weight->date}}</td>
                                     <td class="weight-data">{{$weight->Kilograms}}
+                                    <td class ="weight-data"><a href="/weight/{{$weight->id}}/edit" class="btn btn-primary">Edit Weight</a></td>
+                                    <td class ='weight-data'>
+                                    <form action="{{action('WeightController@destroy', $weight->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -53,6 +53,7 @@ class FormController extends Controller
                'calories.min' => 'please enter a number above 1'
            ];
         $drink = new Drink();
+        $drink->id=$request->get('id');
 	    $drink->date=$request->get('date');
         $drink->type=$request->get('type');
         $drink->number=$request->get('number');

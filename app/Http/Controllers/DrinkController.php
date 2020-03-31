@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mood;
+use App\Drink;
 use Illuminate\Http\Request;
 
-class MoodController extends Controller
+class DrinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MoodController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Drink  $drink
      * @return \Illuminate\Http\Response
      */
-    public function show(Mood $mood)
+    public function show(Drink $drink)
     {
         //
     }
@@ -52,47 +52,46 @@ class MoodController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Drink  $drink
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $mood = Mood::find($id);
+        $drink = Drink::find($id);
 
-        return view('mood.edit')->with('mood',$mood); 
-
+        return view('drink.edit')->with('drink',$drink); 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mood  $mood
+     * @param  \App\Drink  $drink
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mood $mood)
+    public function update(Request $request, Drink $drink)
     {
-        $mood = Mood::find($request->input('id'));
+        $drink = Drink::find($request->input('id'));
         $request->validate([
-            'date' => 'required',
-            'level' => 'required',         
+            'date'=>'required',
+            'number'=>'required|integer|min:1',
+            'kilojoules'=>'required|integer|min:1',
+            'calories'=>'required|integer|min:1'       
         ]);
-        $mood->update($request->all());
-        return redirect('tables')->with('success','Your Mood has been Updated ');
-
+        $drink->update($request->all());
+        return redirect('tables')->with('success','Your Drink has been Updated ');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mood  $mood
+     * @param  \App\Drink  $drink
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mood $mood)
+    public function destroy(Drink $drink)
     {
-        $mood->delete();
+        $drink->delete();
 
-        return redirect('tables')->with('success','Mood deleted successfully');
-
+        return redirect('tables')->with('success','Drink deleted successfully');
     }
 }

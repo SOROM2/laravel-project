@@ -18,13 +18,12 @@
 h3{
     margin-top: 30px;
 }
-
 </style>
+
 <h3 class="text-center">  Edit Your Mood  </h3>
 <form action="{{route('mood.update', $mood->id )}}" method = "post">
             @csrf
-            
-                <div class="form-group">
+                   <div class="form-group">
                     <label for ="date"> Date: </label>
                     <input type="date" class = "form-control" id ="date" name="date" value="{{ $mood->date }}" >
                 </div>
