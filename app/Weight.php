@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Weight extends Model
 {
     //
-    protected $fillable = ['date','kilograms','user_id'];
+    protected $fillable = ['date','Kilograms','user_id'];
     public $timestamps = false;
     public function user()
     {
