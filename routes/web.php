@@ -52,3 +52,6 @@ Auth::routes();
 Route::get('/list',function(){
     return view('list');
 });
+
+Route::get('/profile/{name}','ProfilesController@show')->name('profile');
+

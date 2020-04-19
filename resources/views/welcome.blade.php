@@ -16,7 +16,7 @@
 	</div>
 	<div class="row justify-content-center">
 		<div class="col-md-12 text-center">
-			<img class="rounded-circle" alt="Bootstrap Image Preview" src="images/Home.jpg" width="450px" />
+			<img class="rounded-circle" alt="Bootstrap Image Preview" src="public/images/Home.jpg" width="450px" />
 		</div>
 	</div>
 </div>

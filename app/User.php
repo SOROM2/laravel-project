@@ -37,13 +37,18 @@ class User extends Authenticatable
         return $this->hasMany('App\Weight');
     }
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username',
+        'name', 'email', 'password', 'weightStarting', 'height', 'gender'
     ];
 
     /**
