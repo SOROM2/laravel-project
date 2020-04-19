@@ -57,6 +57,13 @@
                                 <input id="weightStarting" type="number" class="form-control @error('weightStarting') is-invalid @enderror" name="weightStarting" value="{{ old('weightStarting') }}" required autocomplete="weightStarting">
 
                                 @error('weightStarting')
+
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+
+                                @error('usernamdev
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -65,6 +72,7 @@
                         </div>
 
                         <div class="form-group row">
+
                             <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Curret Height - Centimeters') }}</label>
 
                             <div class="col-md-6">
@@ -82,9 +90,7 @@
                         
                         <div class="col-lg-6">
                         <label for="male">{{ __('Male') }}</label>
-                               <input class="radiolabel" type="radio" id="male" name="gender" value="male">
-                            
-                              
+                               <input class="radiolabel" type="radio" id="male" name="gender" value="male"                             
 
                                <label class="radiolabel"  for="female">{{ __('Female') }}</label>
                                 <input type="radio" id="female" name="gender" value="female">
@@ -94,6 +100,7 @@
                         </div>
 
                         <div class="form-group row">
+
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

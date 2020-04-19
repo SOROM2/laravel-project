@@ -53,6 +53,7 @@ class FormController extends Controller
                'calories.min' => 'please enter a number above 1'
            ];
         $drink = new Drink();
+        $drink->id=$request->get('id');
 	    $drink->date=$request->get('date');
         $drink->type=$request->get('type');
         $drink->number=$request->get('number');
@@ -160,6 +161,7 @@ if(isset($formData['mood']))
         ];
         $request->validate($rules,$messages);
         $mood = new Mood();
+        $mood->id=$request->get('id');
 	    $mood ->date=$request->get('date');
         $mood ->level=$request->get('level');
         //the user id is the current users id
@@ -446,6 +448,7 @@ public function homelist()
                 }
         return view('graphs')->with('type',json_encode($array))->with('kilograms',json_encode($weightArray))->with('level', json_encode($Moodarray))->with('hours', json_encode($sleepArray))->with('minutes', json_encode($workoutArray))->with('kilojoules', json_encode($snackArray))->with('number', json_encode($drinkArray));
     }
+
     //output for tables
     public function list()
         {
@@ -455,6 +458,7 @@ public function homelist()
             $snacks = Snack::where('user_id',auth()->id())->orderBy('date','desc')->get();
             $drinks = Drink::where('user_id',auth()->id())->orderBy('date','desc')->get();
             $weights = Weight::where('user_id',auth()->id())->orderBy('date','desc')->get();
+
 
 
 //$weekWorkout= select(YEARWEEK(date) as yyyyww, SUM(minutes)
