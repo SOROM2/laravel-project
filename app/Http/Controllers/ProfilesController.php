@@ -33,7 +33,7 @@ class ProfilesController extends Controller
             'username'=>['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email'=>['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'gender'=>['required', 'string', 'max:16'],
-            'biography'=>['string', 'max:256']
+            'biography'=>['string', 'max:64']
         ]);
 
         $user->update($updated);

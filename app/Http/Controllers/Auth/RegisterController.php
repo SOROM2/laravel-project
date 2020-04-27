@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'weightStarting' => ['required', 'int', 'max:999'],
             'height' => ['required', 'int', 'max:999'],
             'gender' => ['required', 'string', 'max:16'],
-            'biography' => ['string', 'max:256'],
+            'biography' => ['string', 'max:64'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
