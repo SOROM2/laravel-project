@@ -85,7 +85,7 @@
                         </li>
                         <li class="nav-item">
                         
-                            <a class="nav-link" href="/profile/{{ Auth::user()->name }}">profile</a>
+                            <a class="nav-link" href="/profile/{{ Auth::user()->username }}">profile</a>
                          
 
                         </li>
