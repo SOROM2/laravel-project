@@ -10,6 +10,7 @@ use App\Sleep;
 use App\Snack;
 use App\User;
 use App\Weight;
+use App\Height;
 use App\Workout;
 use DB;
 
@@ -190,6 +191,28 @@ if(isset($formData['weight']))
         $weight ->save();
 
         return redirect('home')->with('success','Your weight has been recorded');
+    }
+
+//store a users height
+if(isset($formData['height']))
+    {
+        $rules = [
+            'date'=>'required',
+            'Centimeters'=>'required'
+        ];
+        $messages = [
+            'date.required'=>'Please enter a date',
+            'Centimeters.required'=>'Please enter a height'
+        ];
+                $request->validate($rules,$messages);
+        $height = new Height();
+	    $height ->date=$request->get('date');
+        $height ->Centimeters =$request->get('Centimeters');
+        //the user id is the current users id
+        $height ->user_id=auth()->id();
+        $height ->save();
+
+        return redirect('home')->with('success','Your height has been recorded');
     }
 
     //Ask the coach options
@@ -414,6 +437,21 @@ public function homelist()
                 $weightArray[++$key] = [$value->date, $value->kilograms];
 
             }
+
+            //s elect height data for loggedn ni nuser
+            $heightData = DB::table('heights')
+        ->select(
+            DB::raw('Centimeters as centimeters'),
+            DB::raw('date as date'))
+            ->where('user_id',auth()->id())
+            ->orderBy('date')
+            ->get();
+            $heightArray[] = ['date','centimeters'];
+            foreach($heightData as $key => $value)
+            {
+                $heightArray[++$key] = [$value->date, $value->centimeters];
+
+            }
                   //select snack data, for logged in user
        
             $snackData = DB::table('snacks')
@@ -446,7 +484,7 @@ public function homelist()
                     $drinkArray[++$key] = [$value->date, $value->number];
     
                 }
-        return view('graphs')->with('type',json_encode($array))->with('kilograms',json_encode($weightArray))->with('level', json_encode($Moodarray))->with('hours', json_encode($sleepArray))->with('minutes', json_encode($workoutArray))->with('kilojoules', json_encode($snackArray))->with('number', json_encode($drinkArray));
+        return view('graphs')->with('type',json_encode($array))->with('kilograms',json_encode($weightArray))->with('level', json_encode($Moodarray))->with('hours', json_encode($sleepArray))->with('minutes', json_encode($workoutArray))->with('kilojoules', json_encode($snackArray))->with('number', json_encode($drinkArray))->with('centimeters', json_encode($heightArray));
     }
 
     //output for tables
@@ -458,6 +496,7 @@ public function homelist()
             $snacks = Snack::where('user_id',auth()->id())->orderBy('date','desc')->get();
             $drinks = Drink::where('user_id',auth()->id())->orderBy('date','desc')->get();
             $weights = Weight::where('user_id',auth()->id())->orderBy('date','desc')->get();
+            $heights = Height::where('user_id',auth()->id())->orderBy('date','desc')->get();
 
 
 
@@ -531,7 +570,7 @@ public function homelist()
             $ZDistance=$skm->sum('kilometres');
 		    
 			
-            return view('tables', compact('moods','tDistance','ZDistance','sleeps','workouts','snacks','drinks','weights','user','maxDuration','maxDistance','totalDuration','totalDistance','totalSleep','ZSleep','tDuration','ZDuration','totalKilojoules','ZKilojoules','totalDrinks','ZDrinks'));
+            return view('tables', compact('moods','tDistance','ZDistance','sleeps','workouts','snacks','drinks','weights','heights' ,'user','maxDuration','maxDistance','totalDuration','totalDistance','totalSleep','ZSleep','tDuration','ZDuration','totalKilojoules','ZKilojoules','totalDrinks','ZDrinks'));
         }
     
 }
