@@ -55,4 +55,4 @@ Route::get('/list',function(){
 
 Route::get('/profile/{username}', 'ProfilesController@show')->name('profile');
 Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
-Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile');
+Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile.update');
