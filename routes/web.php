@@ -35,7 +35,7 @@ Route::resource('snack', 'SnackController');
 Route::resource('weight', 'WeightController');
 Route::resource('workout', 'WorkoutController');
 Route::resource('friends_users', 'FriendsController');
-
+Route::resource('height', 'HeightController');
 
 Route::post('mood/edit/{id}', 'MoodController@update')->name('mood.update');
 Route::post('drink/edit/{id}', 'DrinkController@update')->name('drink.update');
@@ -43,6 +43,7 @@ Route::post('sleep/edit/{id}', 'SleepController@update')->name('sleep.update');
 Route::post('snack/edit/{id}', 'SnackController@update')->name('snack.update');
 Route::post('weight/edit/{id}', 'WeightController@update')->name('weight.update');
 Route::post('workout/edit/{id}', 'WorkoutController@update')->name('workout.update');
+Route::post('height/edit/{id}', 'HeightController@update')->name('height.update');
 Route::get('/home','FormController@homelist');
 Route::get('/tables','FormController@list');
 Route::get('/graphs','FormController@chart');

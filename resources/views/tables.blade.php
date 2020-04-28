@@ -186,7 +186,10 @@ h3 {
                         <a class="nav-link border border-secondary" data-toggle="tab" href="#menu5">Weight</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link border border-secondary" data-toggle="tab" href="#menu6">Summaries</a>
+                        <a class="nav-link border border-secondary" data-toggle="tab" href="#menu6">Height</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border border-secondary" data-toggle="tab" href="#menu7">Summaries</a>
                     </li>
                 </ul>
 
@@ -390,6 +393,37 @@ h3 {
                         </table>
                     </div>
                     <div id="menu6" class="container tab-pane fade"><br>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="weight">
+                                    <th> id </th>
+                                    <th>Date</th>
+                                    <th>Height</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($heights as $height)
+                                <tr>
+                                    <td class ="height-data">{{$height->id}}</td>
+                                    <td class="height-data">{{$height->date}}</td>
+                                    <td class="height-data">{{$height->centimeters}}
+                                    <td class ="height-data"><a href="/height/{{$height->id}}/edit" class="btn btn-primary">Edit Height</a></td>
+                                    <td class ='height-data'>
+                                    <form action="{{action('HeightController@destroy', $height->id)}}" method="post">
+                                        {{csrf_field()}}
+                                         <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="menu7" class="container tab-pane fade"><br>
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="mood">
