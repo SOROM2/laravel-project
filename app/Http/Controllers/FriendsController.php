@@ -34,7 +34,7 @@ class FriendsController extends Controller
 
 public function destroy($id)
 {
-  $friend = User::where('id', $id)->first();
+  $friend = Friend_User::where('friend_id', $id)->first();
   $friend->delete();
   return redirect('home')->with('success','Friend deleted successfully');
 }
