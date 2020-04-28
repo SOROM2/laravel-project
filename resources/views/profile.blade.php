@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block col-xl-6 col-md-6 col-sm-10 mx-auto">
+        <button type="button" class="close" data-dismiss="alert">close</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+
 <div class="row py-5 px-4">
     <div class="col-xl-6 col-md-6 col-sm-10 mx-auto">
 
