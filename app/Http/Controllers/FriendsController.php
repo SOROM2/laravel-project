@@ -32,10 +32,11 @@ class FriendsController extends Controller
   return redirect('home')->with('success','Friend added successfully');
 }
 
-public function destroy($friend_id)
+public function destroy($id)
 {
-  $friend = Friend_User::find($friend_id);
+  $friend = User::where('id', $id)->first();
   $friend->delete();
   return redirect('home')->with('success','Friend deleted successfully');
 }
+
 }

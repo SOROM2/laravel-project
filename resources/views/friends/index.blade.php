@@ -16,9 +16,9 @@
       <tr>
           <td>{{ $friend->name }}</td>
           <td>{{ $friend->email }}</td>
-          <td>{{$friend->friend_id}}</td>
+          <td>{{$friend->id}}</td>
           
-          <td>   <form action="{{action('FriendsController@destroy', $friend->friend_id)}}" method="post">
+          <td>   <form action="{{action('FriendsController@destroy', $friend->id)}}" method="post">
                                         {{csrf_field()}}
                                          <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger" type="submit">Delete</button>
