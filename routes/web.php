@@ -34,6 +34,8 @@ Route::resource('sleep', 'SleepController');
 Route::resource('snack', 'SnackController');
 Route::resource('weight', 'WeightController');
 Route::resource('workout', 'WorkoutController');
+Route::resource('friends_users', 'FriendsController');
+
 
 Route::post('mood/edit/{id}', 'MoodController@update')->name('mood.update');
 Route::post('drink/edit/{id}', 'DrinkController@update')->name('drink.update');
@@ -54,4 +56,8 @@ Route::get('/list',function(){
 });
 
 Route::get('/profile/{name}','ProfilesController@show')->name('profile');
+Route::get('/friends/index', 'FriendsController@getIndex');
+Route::post('/friends/index{id}', 'FriendsController@getAddFriend');
+
+
 
