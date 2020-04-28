@@ -196,6 +196,7 @@
                     <li class="nav-item pill-4"><a class="nav-link" data-toggle="tab" href="#menu3">Snacks</a></li>
                     <li class="nav-item pill-5"><a class="nav-link" data-toggle="tab" href="#menu4">Drinks</a></li>
                     <li class="nav-item pill-6"><a class="nav-link" data-toggle="tab" href="#menu5">Weight</a></li>
+                    <li class="nav-item pill-7"><a class="nav-link" data-toggle="tab" href="#menu6">Height</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="home" class="container tab-pane in active">
@@ -369,6 +370,34 @@
 
 
                             <button type="submit" name="weight" value="weight" class="btn btn-secondary">Submit</button>
+                        </form>
+                    </div>
+
+                    <div id="menu6" class="container tab-pane">
+                        <form action="{{url()->action('FormController@store')}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('date') }}
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="Centimeters">Height</label>
+                                <input type="text" class="form-control" id="Centimeters"
+                                    placeholder="Enter height in Centimeters" name="Centimeters">
+                                    @if ($errors->has('Centimeters'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('Centimeters') }}
+                                    </span>
+                                @endif
+                            </div>
+
+
+                            <button type="submit" name="height" value="height" class="btn btn-secondary">Submit</button>
                         </form>
                     </div>
                 </div>
