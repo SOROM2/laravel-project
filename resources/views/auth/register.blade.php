@@ -50,17 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="weightStarting" class="col-md-4 col-form-label text-md-right">{{ __('Current Weight - Kilograms') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="weightStarting" type="number" class="form-control @error('weightStarting') is-invalid @enderror" name="weightStarting" value="{{ old('weightStarting') }}" required autocomplete="weightStarting">
-                                @error('weightStarting')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
+                           <div class="form-group row" >
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
@@ -73,6 +63,19 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="weightStarting" class="col-md-4 col-form-label text-md-right">{{ __('Current Weight - Kilograms') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="weightStarting" type="number" class="form-control @error('weightStarting') is-invalid @enderror" name="weightStarting" value="{{ old('weightStarting') }}" required autocomplete="weightStarting">
+                                @error('weightStarting')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            </div>
 
                         <div class="form-group row">
 
@@ -92,14 +95,18 @@
                         <div class="form-group row">
                         
                         <div class="col-lg-6">
-                        <label for="male">{{ __('Male') }}</label>
-                               <input class="radiolabel" type="radio" id="male" name="gender" value="male"                             
+                            <input  type="radio" id="male" name="gender" value="male">
+                            <label class="radiolabel" for="male">{{ __('Male') }}</label>
 
-                               <label class="radiolabel"  for="female">{{ __('Female') }}</label>
-                                <input type="radio" id="female" name="gender" value="female">
-                                
-                               </div>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label class="radiolabel"  for="female">{{ __('Female') }}</label>
+
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label class="radiolabel" for="other">{{ __('Other') }}</label>
+                        </div>
                                                          
+                        
+                        
                         </div>
 
                         <div class="form-group row">

@@ -56,9 +56,10 @@ Route::get('/list',function(){
     return view('list');
 });
 
-Route::get('/profile/{name}','ProfilesController@show')->name('profile');
+Route::get('/profile/{username}', 'ProfilesController@show')->name('profile');
+Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile.update');
+
 Route::get('/friends/index', 'FriendsController@getIndex');
 Route::post('/friends/index{id}', 'FriendsController@getAddFriend');
-
-
 
