@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,10 +38,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Weight');
     }
 
-    public function getRouteKeyName()
-    {
-        return 'name';
+
+
+    public function friends()
+	{
+		return $this->belongsToMany(User::class, 'friends_users', 'user_id', 'friend_id');
     }
+
+    
+    
 
     /**
      * The attributes that are mass assignable.
