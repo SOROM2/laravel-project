@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\User;
+use App\Height;
+use App\Weight;
 use Auth;
 
 class ProfilesController extends Controller
@@ -12,7 +14,11 @@ class ProfilesController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->first();
-        return view('profile')->withUser($user);
+        $currentHeight = Height::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+        $currentWeight = Weight::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+        return view('profile')->withUser($user)
+                              ->with('currentHeight', $currentHeight)
+                              ->with('currentWeight', $currentWeight);
     }
 
     public function edit($username) {
