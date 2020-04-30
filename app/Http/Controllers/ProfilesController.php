@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class ProfilesController extends Controller
 {
@@ -21,6 +22,11 @@ class ProfilesController extends Controller
 
     public function update(Request $request, $username) {
         $user = User::where('username', $username)->first();
+
+        // if user tries to edit someone else's profile
+        if ($user->id !== Auth::user()->id) {
+            return redirect('profile/'.$user->username);
+        }
 
         $updated = [
             'username' => $request['username'],

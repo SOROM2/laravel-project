@@ -32,7 +32,9 @@
                 <div class="col-md-12 text-center">
 			<img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
 		</div>         
-            <a href="/profile/{{$user->username}}/edit" class="btn btn-primary">Edit Profile</a>
+            @if ($user->id === Auth::user()->id)
+                <a href="/profile/{{$user->username}}/edit" class="btn btn-primary">Edit Profile</a>
+            @endif
             </div>      
 
        </div>
