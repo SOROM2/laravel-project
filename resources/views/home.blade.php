@@ -196,6 +196,7 @@
                     <li class="nav-item pill-4"><a class="nav-link" data-toggle="tab" href="#menu3">Snacks</a></li>
                     <li class="nav-item pill-5"><a class="nav-link" data-toggle="tab" href="#menu4">Drinks</a></li>
                     <li class="nav-item pill-6"><a class="nav-link" data-toggle="tab" href="#menu5">Weight</a></li>
+                    <li class="nav-item pill-7"><a class="nav-link" data-toggle="tab" href="#menu6">Height</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="home" class="container tab-pane in active">
@@ -231,7 +232,7 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
                             </div>
                             <div class="form-group">
                                 <label for="hours">Sleep:</label>
@@ -254,22 +255,22 @@
                             <div class="form-group">
                                 {{csrf_field()}}
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
                             </div>
                             <div class="form-group">
                                 <label for="type">Activity:</label>
                                 <input type="text" class="form-control" id="type" placeholder="Enter activity"
-                                    name="type">
+                                    name="type" required>
                             </div>
                             <div class="form-group">
                                 <label for="minutes">Duration:</label>
                                 <input type="text" class="form-control" id="minutes"
-                                    placeholder="Enter duration in minutes" name="minutes">
+                                    placeholder="Enter duration in minutes" name="minutes" required>
                             </div>
                             <div class="form-group">
                                 <label for="kilometres">Distance:</label>
                                 <input type="text" class="form-control" id="kilometres"
-                                    placeholder="Enter distance in kilometres" name="kilometres">
+                                    placeholder="Enter distance in kilometres" name="kilometres" required>
                             </div>
                             <button type="submit" name="workout" value="workout"
                                 class="btn btn-secondary">Submit</button>
@@ -302,12 +303,12 @@
                             <div class="form-group">
                                 <label for="kilojoules">Kilojoules</label>
                                 <input type="number" class="form-control" id="kilojoules"
-                                    placeholder="Enter number of kilojoules" name="kilojoules">
+                                    placeholder="Enter number of kilojoules" name="kilojoules" required>
                             </div>
                             <div class="form-group">
                                 <label for="calories">Or Calories</label>
                                 <input type="number" class="form-control" id="calories"
-                                    placeholder="Enter number of calories" name="calories">
+                                    placeholder="Enter number of calories" name="calories" required>
                             </div>
 
                             <button type="submit" name="snack" value="snack" class="btn btn-secondary">Submit</button>
@@ -318,27 +319,27 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date" required>
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <input type="text" class="form-control" id="type" placeholder="Enter drink type"
-                                    name="type">
+                                    name="type" required>
                             </div>
                             <div class="form-group">
                                 <label for="kilojoules">Number</label>
                                 <input type="number" class="form-control" id="number"
-                                    placeholder="Enter number of Std Drinks" name="number">
+                                    placeholder="Enter number of Std Drinks" name="number" required>
                             </div>
                             <div class="form-group">
                                 <label for="kilojoules">Kilojoules</label>
                                 <input type="number" class="form-control" id="kilojoules"
-                                    placeholder="Enter number of kilojoules" name="kilojoules">
+                                    placeholder="Enter number of kilojoules" name="kilojoules" required>
                             </div>
                             <div class="form-group">
                                 <label for="calories">Calories</label>
                                 <input type="number" class="form-control" id="calories"
-                                    placeholder="Enter number of calories" name="calories">
+                                    placeholder="Enter number of calories" name="calories" required>
                             </div>
 
                             <button type="submit" name="drink" value="drink" class="btn btn-secondary">Submit</button>
@@ -369,6 +370,34 @@
 
 
                             <button type="submit" name="weight" value="weight" class="btn btn-secondary">Submit</button>
+                        </form>
+                    </div>
+
+                    <div id="menu6" class="container tab-pane">
+                        <form action="{{url()->action('FormController@store')}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" name="date">
+                                @if ($errors->has('date'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('date') }}
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="Centimeters">Height</label>
+                                <input type="text" class="form-control" id="Centimeters"
+                                    placeholder="Enter height in Centimeters" name="Centimeters">
+                                    @if ($errors->has('Centimeters'))
+                                    <span style="color:red;">
+                                        {{ $errors->first('Centimeters') }}
+                                    </span>
+                                @endif
+                            </div>
+
+
+                            <button type="submit" name="height" value="height" class="btn btn-secondary">Submit</button>
                         </form>
                     </div>
                 </div>

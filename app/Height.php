@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Weight extends Model
+class Height extends Model
 {
-    //
-    protected $fillable = ['date','Kilograms','user_id'];
+    protected $fillable = ['date','Centimeters','user_id'];
     public $timestamps = false;
     public function user()
     {
