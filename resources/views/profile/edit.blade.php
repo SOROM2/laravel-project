@@ -43,16 +43,13 @@ h3{
                  <div class="form-group">
                     <label for="gender">Gender:</label>
                     <div class="col-lg-6" id="gender">
-                        <?php
-                            $other = False;
-                        ?>
                         <input  type="radio" id="male" name="gender" value="male" {{ ($user->gender === "male") ? 'checked' : '' }}>
                         <label class="radiolabel" for="male">{{ __('Male') }}</label>
 
-                        <input type="radio" id="female" name="gender" value="female" {{ ($user->gender === "female") ? 'checked' : $other = True }}>
+                        <input type="radio" id="female" name="gender" value="female" {{ ($user->gender === "female") ? 'checked' : '' }}>
                         <label class="radiolabel"  for="female">{{ __('Female') }}</label>
 
-                        <input type="radio" id="other" name="gender" value="other" {{ ($other === True ) ? 'checked' : '' }}>
+                        <input type="radio" id="other" name="gender" value="other" {{ ($user->gender !== "male" and $user->gender !== "female" ) ? 'checked' : '' }}>
                         <label class="radiolabel" for="other">{{ __('Other') }}</label>
                     </div>
                 </div>              
