@@ -32,8 +32,8 @@
                         <h5 class="mt-0 mb-0 text-white">Starting Height: {{$user->height}} Cm</h5>
                         <h5 class="mt-0 mb-0 text-white">Current Height: {{is_null($currentHeight) ? $user->height : $currentHeight->centimeters }} Cm</h5></br>
                         @if ( isset($user->biography) )
-                            <h5 class="mt-0 mb-0">Bio:</h5></br>
-                            <p>{{$user->biography}}</p>
+                            <h5 class="mt-0 mb-0 text-white">Bio:</h5></br>
+                            <p class="text-white">{{$user->biography}}</p>
                         @endif
                         
                     </div>                  
