@@ -67,7 +67,7 @@ h3{
 <form action="/profile/{{$user->username}}/updateImage" enctype="multipart/form-data" method="post">
     @csrf
     <div class="form-group">
-        <label for="profile_image">Select a new profile image:</label>
+        <label for="profile_image">Select a new profile image:</label><br>
         <input type="file" name="profile_image" id="profile_image">
     </div>
 
