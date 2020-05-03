@@ -30,8 +30,8 @@ class ProfilesController extends Controller
         $user = User::where('username', $username)->first();
 
         // if user tries to edit someone else's profile
-        if ($user->id !== Auth::user()->id) {
-            return redirect('profile/'.$user->username);
+        if (!isset($user) || ($user->id !== Auth::user()->id)) {
+            return redirect('profile/'.Auth::user()->username);
         }
 
         $updated = [
@@ -50,23 +50,23 @@ class ProfilesController extends Controller
 
         $user->update($updated);
 
-        return redirect('profile/'.$user->username)->with('success', 'Profile Updated Successfully');
+        return redirect('profile/'.Auth::user()->username)->with('success', 'Profile Updated Successfully');
     }
 
     public function updateImage(Request $request, $username) {
         $user = User::where('username', $username)->first();
 
         // deny unauthorized updates
-        if ($user->id !== Auth::user()->id) {
-            return redirect('profile/'.$user->username);
+        if (!isset($user) || ($user->id !== Auth::user()->id)) {
+            return redirect('profile/'.Auth::user()->username);
         }
 
         // validate file upload request
         $this->validate($request, [
-            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
+            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'min:40', 'max:2048'],
         ]);
 
-        //
+        // put the file into the filesystem and update the profile_image field in the database with the new filename.
         if ($file = $request->file('profile_image')) {
            $destPath = '../public/images/user/';
            $profileImage = $_SERVER['REQUEST_TIME'].".".$file->getClientOriginalExtension();
@@ -74,14 +74,10 @@ class ProfilesController extends Controller
            $update = [
                 'profile_image' => "$profileImage",
            ];
-        } else {
-            $update = [
-                'profile_image' => null,
-            ];
-        }
+        } 
 
         $user->Update($update);
 
-        return redirect('/profile/'.$user->username)->with('success', 'Profile Picture updated!');
+        return redirect('/profile/'.Auth::user()->username)->with('success', 'Profile Picture updated!');
     }
 }

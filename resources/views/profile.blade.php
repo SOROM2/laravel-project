@@ -19,7 +19,11 @@
                     <div class="media-body mb-5 text-center">
                     <br>
                         <div class="col-md-12 text-center">
-                            <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
+                            @if (isset($user->profile_image))
+                                <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="User profile image" src="/images/user/{{ $user->profile_image }}">
+                            @else
+                                <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
+                            @endif
                         </div>     
                         <h5 class="mt-0 mb-0 text-white">Email: {{$user->email}}</h5></br>
                         <h5 class="mt-0 mb-0 text-white">Gender: {{$user->gender}}</h5></br>
