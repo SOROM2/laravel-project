@@ -20,8 +20,10 @@
                         <h4 class="mt-0 mb-0">{{$user->name}}</h4></br>
                         <h5 class="mt-0 mb-0">Email: {{$user->email}}</h5></br>
                         <h5 class="mt-0 mb-0">Gender: {{$user->gender}}</h5></br>
-                        <h5 class="mt-0 mb-0">Starting Weight: {{$user->weightStarting}}</h5></br>
-                        <h5 class="mt-0 mb-0">Height: {{$user->height}}</h5></br>
+                        <h5 class="mt-0 mb-0">Starting Weight: {{$user->weightStarting}} Kg</h5>
+                        <h5 class="mt-0 mb-0">Current Weight: {{is_null($currentWeight) ? $user->weightStarting : $currentWeight->Kilograms }} Kg</h5></br>
+                        <h5 class="mt-0 mb-0">Starting Height: {{$user->height}} Cm</h5>
+                        <h5 class="mt-0 mb-0">Current Height: {{is_null($currentHeight) ? $user->height : $currentHeight->centimeters }} Cm</h5></br>
                         @if ( isset($user->biography) )
                             <h5 class="mt-0 mb-0">Bio:</h5></br>
                             <p>{{$user->biography}}</p>
