@@ -90,7 +90,7 @@
                         </li>
                         <li class="nav-item">
                         
-                        <a class="nav-link" href="/friends/index">Friends</a>   
+                        <a class="nav-link" href="/friends/index">friends</a>   
 
                     </li>
 

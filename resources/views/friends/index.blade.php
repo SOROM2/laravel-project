@@ -16,6 +16,7 @@
       <tr>
           <td>{{ $friend->name }}</td>
           <td>{{ $friend->email }}</td>
+          <td><a href="/profile/{{ $friend->username }}">Profile</a></td>
           <td>{{$friend->id}}</td>
           
           <td>   <form action="{{action('FriendsController@destroy', $friend->id)}}" method="post">
@@ -43,6 +44,7 @@
       <tr>
           <td>{{ $friend->name }}</td>
           <td>{{ $friend->email }}</td>
+          <td><a href="/profile/{{ $friend->username }}">Profile</a></td>
           <td>{{$friend->id}}</td>
           <td>
           <form action="{{action('FriendsController@getAddFriend',$friend->id)}}" method="POST">
