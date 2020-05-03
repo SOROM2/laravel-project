@@ -25,6 +25,7 @@
                                 <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
                             @endif
                         </div>     
+                        <br>
                         <h5 class="mt-0 mb-0 text-white">Email: {{$user->email}}</h5></br>
                         <h5 class="mt-0 mb-0 text-white">Gender: {{$user->gender}}</h5></br>
                         <h5 class="mt-0 mb-0 text-white">Starting Weight: {{$user->weightStarting}} Kg</h5>
