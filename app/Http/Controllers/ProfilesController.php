@@ -63,7 +63,7 @@ class ProfilesController extends Controller
 
         // validate file upload request
         $this->validate($request, [
-            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'min:40', 'max:2048'],
+            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'min:20', 'max:2048'],
         ]);
 
         // put the file into the filesystem and update the profile_image field in the database with the new filename.
