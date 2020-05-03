@@ -59,6 +59,7 @@ Route::get('/list',function(){
 Route::get('/profile/{username}', 'ProfilesController@show')->name('profile');
 Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile.update');
+Route::post('/profile/{username}/updateImage', 'ProfilesController@updateImage')->name('profile.update');
 
 Route::get('/friends/index', 'FriendsController@getIndex');
 Route::post('/friends/index{id}', 'FriendsController@getAddFriend');

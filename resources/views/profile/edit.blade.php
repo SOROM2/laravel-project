@@ -63,5 +63,11 @@ h3{
                 <a href="/profile/{{$user->username}}" class="btn btn-primary" >Go Back</a>
                 
     </form>
+<form action="/profile/{{$user->username}}/updateImage" enctype="multipart/form-data" method="post">
+    @csrf
+    <label for="profile_image">Select a new profile image:</label>
+    <input type="file" name="profile_image" id="profile_image">
+    <button type="submit" class="btn btn-success">Upload</button>
+</form>
 
 @endsection

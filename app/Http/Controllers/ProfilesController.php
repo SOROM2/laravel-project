@@ -52,4 +52,36 @@ class ProfilesController extends Controller
 
         return redirect('profile/'.$user->username)->with('success', 'Profile Updated Successfully');
     }
+
+    public function updateImage(Request $request, $username) {
+        $user = User::where('username', $username)->first();
+
+        // deny unauthorized updates
+        if ($user->id !== Auth::user()->id) {
+            return redirect('profile/'.$user->username);
+        }
+
+        // validate file upload request
+        $this->validate($request, [
+            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
+        ]);
+
+        //
+        if ($file = $request->file('profile_image')) {
+           $destPath = '../public/images/user/';
+           $profileImage = $_SERVER['REQUEST_TIME'].".".$file->getClientOriginalExtension();
+           $file->move($destPath, $profileImage);
+           $update = [
+                'profile_image' => "$profileImage",
+           ];
+        } else {
+            $update = [
+                'profile_image' => null,
+            ];
+        }
+
+        $user->Update($update);
+
+        return redirect('/profile/'.$user->username)->with('success', 'Profile Picture updated!');
+    }
 }
