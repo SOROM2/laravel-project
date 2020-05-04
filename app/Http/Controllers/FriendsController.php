@@ -41,11 +41,6 @@ public function destroy($id)
   return redirect('home')->with('success','Friend deleted successfully');
 }
 
-public function sendRequest($id)
-{
-  
-  return Auth::user()->addFriend($id);
-  
-}
+
 
 }
