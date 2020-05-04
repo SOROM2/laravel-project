@@ -65,7 +65,9 @@ Route::get('/profile/{username}', 'ProfilesController@show')->name('profile');
 Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile.update');
 
-Route::get('/friends/index', 'FriendsController@getIndex');
-Route::post('/friends/index{id}', 'FriendsController@getAddFriend');
-
+Route::get('/friends/index', 'FriendsController@getIndex'); // get all friends, pending requests and sent requests
+Route::get('/friends/add/{id}', 'FriendsController@createRequest'); // create a request to user User.id
+Route::get('/friends/cancel/{id}', 'FriendsController@declineRequest'); // delete PendingRequest from PendingRequests table . id = pending_request id
+Route::get('/friends/accept/{id}', 'FriendsController@acceptRequest'); // delete PendingRequest from pendingRequests table, create a new entry in friends table. id = pending_request id
+Route::get('/friends/decline/{id}', 'FriendsController@declineRequest'); // same as /friends/cancel/{id}
 
