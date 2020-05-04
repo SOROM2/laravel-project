@@ -86,12 +86,23 @@ class FriendsController extends Controller
         $existing_sent_request = PendingRequests::where('reciever_id', $id)->where('sender_id', Auth::user()->id)->first();
         $existing_recieved_request = PendingRequests::where('sender_id', $id)->where('reciever_id', Auth::user()->id)->first();
 
+        $existing_friend_id = Friend_User::where('friend_id', $id)->where('user_id', Auth::user()->id)->first();
+        $existing_user_id = Friend_User::where('user_id', $id)->where('friend_id', Auth::user()->id)->first();
+
         if ($existing_sent_request) {
             return redirect('/friends')->with('error','You have already sent this user a request.');
         }
 
         if ($existing_recieved_request) {
             return redirect('/friends')->with('error','This user has already sent you a request.');
+        }
+
+        if ($existing_friend_id) {
+            return redirect('/friends')->with('error','You are already friends with this user.');
+        }
+
+        if ($existing_user_id) {
+            return redirect('/friends')->with('error','You are already friends with this user.');
         }
 
         $pending_request = new PendingRequests();
