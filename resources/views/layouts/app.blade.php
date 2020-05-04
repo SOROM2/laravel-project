@@ -40,7 +40,7 @@
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     LUX
                 </a>
-                <a class="navbar-brand"> <img src="images/Home.jpg" width="29" alt="">
+                <a class="navbar-brand"> <img src="/images/Home.jpg" width="29" alt="">
         </a>
                 
                 </a>

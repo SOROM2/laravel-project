@@ -64,6 +64,7 @@ Route::get('/list',function(){
 Route::get('/profile/{username}', 'ProfilesController@show')->name('profile');
 Route::get('/profile/{username}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::post('/profile/{username}/update', 'ProfilesController@update')->name('profile.update');
+Route::post('/profile/{username}/updateImage', 'ProfilesController@updateImage')->name('profile.update');
 
 Route::get('/friends/index', 'FriendsController@getIndex'); // get all friends, pending requests and sent requests
 Route::get('/friends/add/{id}', 'FriendsController@createRequest'); // create a request to user User.id
