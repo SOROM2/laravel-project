@@ -16,7 +16,7 @@ class CreatePendingRequestsTable extends Migration
         Schema::create('pending_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sender_id');
-            $table->integer('reviever_id');
+            $table->integer('reciever_id');
             
         });
     }
