@@ -23,11 +23,20 @@ class FriendsController extends Controller
         $user_id = User::whereIn('id', Friend_User::select('user_id')->where('friend_id', Auth::user()->id));
         $friends = $friend_id->union($user_id)->get();
 
-        // NOT WORKING, JUST RETURNS FRIENDS //
-        $not_friend_id = User::whereNotIn('id', Friend_User::select('friend_id')->where('user_id', Auth::user()->id));
-        $not_user_id = User::whereNotIn('id', Friend_User::select('user_id')->where('friend_id', Auth::user()->id));
-        $not_friends = $friend_id->union($user_id)->get();
 
+        $not_friends = User::where('id', '!=', Auth::user()->id);
+      if (Auth::user()->friends->count()) {
+      $not_friends->whereNotIn('id', Auth::user()->friends->modelKeys());
+        }
+        $not_friends = $not_friends->get();
+  
+
+        // NOT WORKING, JUST RETURNS FRIENDS //
+        /*$not_friend_id = User::whereNotIn('id', Friend_User::select('friend_id')->where('friend_id', Auth::user()->id));
+        $not_user_id = User::whereNotIn('id', Friend_User::select('user_id')->where('user_id', Auth::user()->id));
+        $not_friends = $friend_id->union($user_id)->get();*/
+
+        
 
         // get all recieved requests
         $recieved_requests = PendingRequests::where('reciever_id', Auth::user()->id)->get();
