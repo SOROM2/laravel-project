@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Friend_User;
+use App\Requests;
+use App\Traits\Friendable;
 
 
 class FriendsController extends Controller
@@ -29,7 +31,7 @@ class FriendsController extends Controller
   $friend->friend_id = $friendId->id;
   $friend->save();
   
-  return redirect('home')->with('success','Friend added successfully');
+  return redirect('/friends/index')->with('success','Friend added successfully');
 }
 
 public function destroy($id)
@@ -37,6 +39,13 @@ public function destroy($id)
   $friend = Friend_User::where('friend_id', $id)->first();
   $friend->delete();
   return redirect('home')->with('success','Friend deleted successfully');
+}
+
+public function sendRequest($id)
+{
+  
+  return Auth::user()->addFriend($id);
+  
 }
 
 }

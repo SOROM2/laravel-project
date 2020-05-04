@@ -53,6 +53,7 @@
                                         <button class="btn btn-danger" type="submit">Add Friend</button>
                                         </form>
             </td>
+            <td><a href= "{{url('/friends')}}/addFriend/{{$friend->id}}" class="btn btn-danger">Add Friend</td>
    
       </tr>
       @endforeach

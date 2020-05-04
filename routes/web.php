@@ -22,6 +22,11 @@ Route::get('/', function()
         return view('welcome');
     }
 });
+Route::get('/test', function()
+{
+    return Auth::user()->test();
+});
+
 
 
 
@@ -62,4 +67,6 @@ Route::post('/profile/{username}/update', 'ProfilesController@update')->name('pr
 
 Route::get('/friends/index', 'FriendsController@getIndex');
 Route::post('/friends/index{id}', 'FriendsController@getAddFriend');
+Route::get('/addFriend{id}', 'FriendsController@sendRequest');
+
 
