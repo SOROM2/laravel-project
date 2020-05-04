@@ -16,6 +16,8 @@
     </div>
 @endif
 
+<div class="text-center col-xl-8 col-md-8 col-sm-14 mx-auto">
+
   <h2 class="subheader">Friends</h2>
 @if (empty($friends))
 <p>You have no friends.</p>
@@ -25,6 +27,8 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Profile</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -39,50 +43,75 @@
     </tbody>
   </table>
 @endif
+
+<br>
+
 <h2 class="subheader">Pending requests</h2>
 @if (empty($recieved_requests))
-<p>You have not recieved any requests,</p>
+<p>You have not recieved any requests.</p>
 @else
   <table style="width:100%;">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Email</th>
         <th>Profile</th>
+        <th>Accept/Decline</th>
       </tr>
     </thead>
     <tbody>
-      @foreach($recieved_requests as $request)
+      @foreach ($recieved_requests as $request)
       <tr>
-          <td>{{ $request->sender_id}}</td>
-          <td><a href="/friends/accept/{{$request->id}}" class="btn btn-primary">Accept</a></td>
-          <td><a href="/friends/decline/{{$request->id}}" class="btn btn-danger">Decline</a></td>
+        @foreach ($not_friends as $u)
+            @if($u->id == $request->sender_id)
+                <td>{{ $u->name }}</td>
+                <td>{{ $u->email }}</td>
+                <td><a href="/profile/{{ $u->username }}" class="btn btn-primary">Profile</a></td>
+                @break
+            @endif
+        @endforeach
+          <td><a href="/friends/accept/{{$request->id}}" class="btn btn-primary">Accept</a>
+          <a href="/friends/decline/{{$request->id}}" class="btn btn-danger">Decline</a></td>
       </tr>
       @endforeach
     </tbody>
   </table>
 @endif
 
+<br>
+
 <h2 class="subheader">Sent requests</h2>
-@if (empty($sent_requests))
-<p>You have not recieved any requests,</p>
+@if (is_null($sent_requests))
+<p>You have not sent any requests.</p>
 @else
   <table style="width:100%;">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Email</th>
         <th>Profile</th>
+        <th>Cancel</th>
       </tr>
     </thead>
     <tbody>
-      @foreach($sent_requests as $request)
+      @foreach ($sent_requests as $request)
       <tr>
-          <td>{{ $request->sender_id}}</td>
+        @foreach ($not_friends as $u)
+            @if($u->id == $request->reciever_id)
+                <td>{{ $u->name }}</td>
+                <td>{{ $u->email }}</td>
+                <td><a href="/profile/{{ $u->username }}" class="btn btn-primary">Profile</a></td>
+                @break
+            @endif
+        @endforeach
           <td><a href="/friends/cancel/{{$request->id}}" class="btn btn-danger">Cancel</a></td>
       </tr>
       @endforeach
     </tbody>
   </table>
 @endif
+
+<br>
 
   <h2 class="subheader">Other People</h2>
 @if (!isset($not_friends))
@@ -93,7 +122,8 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
-        <th></th>
+        <th>Profile</th>
+        <th>Add friend</th>
       </tr>
     </thead>
     <tbody>
@@ -108,6 +138,6 @@
     </tbody>
   </table>
 @endif
-
+</div>
 
 @endsection

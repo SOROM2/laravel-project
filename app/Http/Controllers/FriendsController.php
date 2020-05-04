@@ -19,30 +19,43 @@ class FriendsController extends Controller
             return redirect('/');
         }
 
+        /*
+        $not_friends = User::where('id', '!=', Auth::user()->id);
+            if (Auth::user()->friends->count()) {
+            $not_friends->whereNotIn('id', Auth::user()->friends->modelKeys());
+            }
+        $not_friends = $not_friends->get();
+        */ 
+
+        // get all friends
         $friend_id = User::whereIn('id', Friend_User::select('friend_id')->where('user_id', Auth::user()->id));
         $user_id = User::whereIn('id', Friend_User::select('user_id')->where('friend_id', Auth::user()->id));
         $friends = $friend_id->union($user_id)->get();
 
-
-        $not_friends = User::where('id', '!=', Auth::user()->id);
-      if (Auth::user()->friends->count()) {
-      $not_friends->whereNotIn('id', Auth::user()->friends->modelKeys());
-        }
-        $not_friends = $not_friends->get();
-  
-
-        // NOT WORKING, JUST RETURNS FRIENDS //
-        /*$not_friend_id = User::whereNotIn('id', Friend_User::select('friend_id')->where('friend_id', Auth::user()->id));
-        $not_user_id = User::whereNotIn('id', Friend_User::select('user_id')->where('user_id', Auth::user()->id));
-        $not_friends = $friend_id->union($user_id)->get();*/
-
-        
+        // get all non-friends
+        $not_friends = User::whereNotIn('id', $friends->pluck('id'))->where('id', '!=', Auth::user()->id)->get();
 
         // get all recieved requests
         $recieved_requests = PendingRequests::where('reciever_id', Auth::user()->id)->get();
 
         // get all sent requests
         $sent_requests = PendingRequests::where('sender_id', Auth::user()->id)->get();
+
+        if ($friends->isEmpty()) {
+            $friends = NULL;
+        }
+
+        if ($not_friends->isEmpty()) {
+            $not_friends = NULL;
+        }
+
+        if ($recieved_requests->isEmpty()) {
+            $recieved_requests = NULL;
+        }
+
+        if ($sent_requests->isEmpty()) {
+            $sent_requests = NULL;
+        }
 
         return view('friends.index')
             ->with('not_friends', $not_friends)
@@ -64,7 +77,7 @@ class FriendsController extends Controller
         }
 
         // if the caller is not one of the users in the friend_user entry
-        if ((Auth::user()->id !== $friend->user_id) && (Auth::user()->id !== $friend->friend_id)) {
+        if ((Auth::user()->id != $friend->user_id) && (Auth::user()->id != $friend->friend_id)) {
             return redirect('/friends')->with('error',"You cannot delete someone else's friends.");
         }
 
@@ -78,7 +91,7 @@ class FriendsController extends Controller
      */
     public function createRequest($id)
     {
-        if(Auth::user()->id === $id)
+        if(Auth::user()->id == $id)
         {
             return redirect('/friends')->with('error',"You can't add yourself as a friend");
         }
@@ -125,7 +138,7 @@ class FriendsController extends Controller
         }
 
         // check if the caller is the request reciever
-        if (Auth::user()->id !== $pending_request->reciever_id) {
+        if (Auth::user()->id != $pending_request->reciever_id) {
             return redirect('/friends')->with('error', 'You cannot accept this request.');
         }
 
@@ -153,7 +166,7 @@ class FriendsController extends Controller
         }
 
         // check if the caller has permission to delete the request
-        if ((Auth::user()->id !== $pending_request->reciever_id) && (Auth::user()->id !== $pending_request->sender_id)) {
+        if ((Auth::user()->id != $pending_request->reciever_id) && (Auth::user()->id != $pending_request->sender_id)) {
             return redirect('/friends')->with('error', 'You cannot delete this request');
         }
 
