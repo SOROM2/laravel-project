@@ -31,7 +31,9 @@
                         <h5 class="mt-0 mb-0 text-white">Starting Weight: {{$user->weightStarting}} Kg</h5>
                         <h5 class="mt-0 mb-0 text-white">Current Weight: {{is_null($currentWeight) ? $user->weightStarting : $currentWeight->Kilograms }} Kg</h5></br>
                         <h5 class="mt-0 mb-0 text-white">Starting Height: {{$user->height}} Cm</h5>
-                        <h5 class="mt-0 mb-0 text-white">Current Height: {{is_null($currentHeight) ? $user->height : $currentHeight->centimeters }} Cm</h5></br>
+                        <h5 class="mt-0 mb-0 text-white">Current Height: {{is_null($currentHeight) ? $user->height : $currentHeight->centimeters }} Cm</h5></br>                            
+
+
                         @if ( isset($user->biography) )
                             <h5 class="mt-0 mb-0 text-white">Bio:</h5></br>
                             <p class="text-white">{{$user->biography}}</p>
@@ -42,6 +44,8 @@
             @if ($user->id === Auth::user()->id)
                 <a href="/profile/{{$user->username}}/edit" class="btn btn-primary">Edit Profile</a>
             @endif
+            <a href="/profile/{{$user->username}}/mood" class="btn btn-primary">Mood</a>
+            <a href="/profile/{{$user->username}}/sleep" class="btn btn-primary">Sleep</a>
             </div>      
 
        </div>
