@@ -46,6 +46,9 @@
             @endif
             <a href="/profile/{{$user->username}}/mood" class="btn btn-primary">Mood</a>
             <a href="/profile/{{$user->username}}/sleep" class="btn btn-primary">Sleep</a>
+            <a href="/profile/{{$user->username}}/drink" class="btn btn-primary">Drinks</a>
+            <a href="/profile/{{$user->username}}/snack" class="btn btn-primary">Snacks</a>
+            <a href="/profile/{{$user->username}}/workout" class="btn btn-primary">Workouts</a>
             </div>      
 
        </div>

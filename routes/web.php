@@ -67,7 +67,9 @@ Route::post('/profile/{username}/update', 'ProfilesController@update')->name('pr
 Route::post('/profile/{username}/updateImage', 'ProfilesController@updateImage')->name('profile.update');
 Route::get('/profile/{username}/mood', 'ProfilesController@mood')->name('profile.mood');
 Route::get('/profile/{username}/sleep', 'ProfilesController@sleep')->name('profile.sleep');
-Route::get('/profile/{username}/sleep', 'ProfilesController@sleep')->name('profile.sleep');
+Route::get('/profile/{username}/drink', 'ProfilesController@drink')->name('profile.drink');
+Route::get('/profile/{username}/snack', 'ProfilesController@snack')->name('profile.snack');
+Route::get('/profile/{username}/workout', 'ProfilesController@workout')->name('profile.workout');
 
 
 

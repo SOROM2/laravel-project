@@ -8,6 +8,10 @@ use App\User;
 use App\Height;
 use App\Weight;
 use App\Mood;
+use App\Sleep;
+use App\Drink;
+use App\Snack;
+use App\Workout;
 use DB;
 use Auth;
 
@@ -29,12 +33,45 @@ class ProfilesController extends Controller
                               
     }
 
+    public function snack($username)
+    {
+        $user = User::where('username', $username)->first();
+        $moods = DB::table('snacks')->where('user_id',$user->id)->get();
+        return view('profile.snack')->withUser($user)
+                             ->with(compact('snacks'));
+        
+        
+    }
+
+    
     public function mood($username)
     {
         $user = User::where('username', $username)->first();
         $moods = DB::table('moods')->where('user_id',$user->id)->get();
         return view('profile.mood')->withUser($user)
                              ->with(compact('moods'));
+        
+        
+    }
+
+    
+    public function drink($username)
+    {
+        $user = User::where('username', $username)->first();
+        $moods = DB::table('drinks')->where('user_id',$user->id)->get();
+        return view('profile.drink')->withUser($user)
+                             ->with(compact('drinks'));
+        
+        
+    }
+
+    
+    public function workout($username)
+    {
+        $user = User::where('username', $username)->first();
+        $moods = DB::table('workouts')->where('user_id',$user->id)->get();
+        return view('profile.workout')->withUser($user)
+                             ->with(compact('workouts'));
         
         
     }
