@@ -56,7 +56,8 @@ Route::get('calendar','EventController@calendar');
 Route::post('/home','FormController@store');
 Route::post('/menu1','FormController@store');
 Route::post('/list','FormController@list');
-Auth::routes(['verify'=>true]);
+//Auth::routes(['verify'=>true]);
+Auth::routes();
 Route::get('/list',function(){
     return view('list');
 });
