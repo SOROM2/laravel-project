@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Height;
 use App\Weight;
+use App\Mood;
+use App\Sleep;
+use App\Drink;
+use App\Snack;
+use App\Workout;
+use DB;
 use Auth;
 
 class ProfilesController extends Controller
@@ -16,11 +22,69 @@ class ProfilesController extends Controller
         $user = User::where('username', $username)->first();
         $currentHeight = Height::where('user_id', $user->id)->orderBy('date', 'desc')->first();
         $currentWeight = Weight::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+   
+        
+       
+
         return view('profile')->withUser($user)
                               ->with('currentHeight', $currentHeight)
                               ->with('currentWeight', $currentWeight);
+                         
+                              
     }
 
+    public function snack($username)
+    {
+        $user = User::where('username', $username)->first();
+        $snacks = DB::table('snacks')->where('user_id',$user->id)->get();
+        return view('profile.snack')->withUser($user)
+                             ->with(compact('snacks'));
+        
+        
+    }
+
+    
+    public function mood($username)
+    {
+        $user = User::where('username', $username)->first();
+        $moods = DB::table('moods')->where('user_id',$user->id)->get();
+        return view('profile.mood')->withUser($user)
+                             ->with(compact('moods'));
+        
+        
+    }
+
+    
+    public function drink($username)
+    {
+        $user = User::where('username', $username)->first();
+        $drinks = DB::table('drinks')->where('user_id',$user->id)->get();
+        return view('profile.drink')->withUser($user)
+                             ->with(compact('drinks'));
+        
+        
+    }
+
+    
+    public function workout($username)
+    {
+        $user = User::where('username', $username)->first();
+        $workouts = DB::table('workouts')->where('user_id',$user->id)->get();
+        return view('profile.workout')->withUser($user)
+                             ->with(compact('workouts'));
+        
+        
+    }
+
+    public function sleep($username)
+    {
+        $user = User::where('username', $username)->first();
+        $sleeps = DB::table('sleeps')->where('user_id',$user->id)->get();
+        return view('profile.sleep')->withUser($user)
+                             ->with(compact('sleeps'));
+        
+        
+    }
     public function edit($username) {
         $user = User::where('username', $username)->first();
         return view('profile.edit')->withUser($user);
@@ -80,4 +144,6 @@ class ProfilesController extends Controller
 
         return redirect('/profile/'.Auth::user()->username)->with('success', 'Profile Picture updated!');
     }
+
+
 }
