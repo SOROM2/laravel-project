@@ -36,7 +36,7 @@ class ProfilesController extends Controller
     public function snack($username)
     {
         $user = User::where('username', $username)->first();
-        $moods = DB::table('snacks')->where('user_id',$user->id)->get();
+        $snacks = DB::table('snacks')->where('user_id',$user->id)->get();
         return view('profile.snack')->withUser($user)
                              ->with(compact('snacks'));
         
@@ -58,7 +58,7 @@ class ProfilesController extends Controller
     public function drink($username)
     {
         $user = User::where('username', $username)->first();
-        $moods = DB::table('drinks')->where('user_id',$user->id)->get();
+        $drinks = DB::table('drinks')->where('user_id',$user->id)->get();
         return view('profile.drink')->withUser($user)
                              ->with(compact('drinks'));
         
@@ -69,7 +69,7 @@ class ProfilesController extends Controller
     public function workout($username)
     {
         $user = User::where('username', $username)->first();
-        $moods = DB::table('workouts')->where('user_id',$user->id)->get();
+        $workouts = DB::table('workouts')->where('user_id',$user->id)->get();
         return view('profile.workout')->withUser($user)
                              ->with(compact('workouts'));
         
