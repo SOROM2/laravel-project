@@ -18,7 +18,7 @@ table.table-bordered>tbody>tr>td {
 }
 </style>
 <br>
-<h3 class="text-center"> My Drinks </h3>
+<h3 class="text-center">  {{$user->name}}'s Drinks </h3>
 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
                         <table class="table table-bordered">
