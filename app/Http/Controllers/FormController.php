@@ -25,20 +25,26 @@ class FormController extends Controller
 //store a users workout
     public function store(Request $request)
     {
+        // update last updated
+        $updateDate = [
+            'last_updated' => date('n/j/Y'),
+        ];
+        Auth::user()->update($updateDate);
+
         $formData=request()->all();
         if(isset($formData['workout']))
-{
-        $workout = new Workout();
-	    $workout->date=$request->get('date');
-        $workout->type=$request->get('type');
-        $workout->minutes=$request->get('minutes');
-        $workout->kilometres=$request->get('kilometres');
-        //the user id is the current users id
-        $workout->user_id=auth()->id();
-        $workout->save();
+        {
+            $workout = new Workout();
+            $workout->date=$request->get('date');
+            $workout->type=$request->get('type');
+            $workout->minutes=$request->get('minutes');
+            $workout->kilometres=$request->get('kilometres');
+            //the user id is the current users id
+            $workout->user_id=auth()->id();
+            $workout->save();
 
-        return redirect('home')->with('success','Your workout has been recorded');
-}
+            return redirect('home')->with('success','Your workout has been recorded');
+        }
 //store a users drinks
     if(isset($formData['drink']))
     {
