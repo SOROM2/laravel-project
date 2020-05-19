@@ -166,6 +166,7 @@
             <br>
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">close</button>
+                <a class="close" href="/tables" style="margin-right:10px;">show</a>
                 <strong>{{ $message }}</strong>
             </div>
 
