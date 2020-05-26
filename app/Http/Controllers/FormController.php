@@ -227,6 +227,11 @@ if(isset($formData['height']))
     if(isset($formData['coachMood']))
     {
         $moods = Mood::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($moods == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any mood values yet.');
+        }
+
         $lastLevel=$moods->level;
        
         if($lastLevel > 6)
@@ -243,6 +248,11 @@ if(isset($formData['height']))
     if(isset($formData['coachSleep']))
     {
         $sleeps = Sleep::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($sleeps == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any sleep values yet.');
+        }
+
         $lastHours=$sleeps->hours;
         
         if($lastHours > 6)
@@ -259,6 +269,11 @@ if(isset($formData['height']))
     if(isset($formData['coachWorkout']))
     {
         $workouts = Workout::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($workouts == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any workout values yet.');
+        }
+
         $lastWorkout=$workouts->minutes;
         
         if($lastWorkout > 29)
