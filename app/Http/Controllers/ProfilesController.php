@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\User;
+use App\Height;
+use App\Weight;
+use App\Mood;
+use App\Sleep;
+use App\Drink;
+use App\Snack;
+use App\Workout;
+use DB;
 use Auth;
 
 class ProfilesController extends Controller
@@ -12,9 +20,71 @@ class ProfilesController extends Controller
     public function show($username)
     {
         $user = User::where('username', $username)->first();
-        return view('profile')->withUser($user);
+        $currentHeight = Height::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+        $currentWeight = Weight::where('user_id', $user->id)->orderBy('date', 'desc')->first();
+   
+        
+       
+
+        return view('profile')->withUser($user)
+                              ->with('currentHeight', $currentHeight)
+                              ->with('currentWeight', $currentWeight);
+                         
+                              
     }
 
+    public function snack($username)
+    {
+        $user = User::where('username', $username)->first();
+        $snacks = DB::table('snacks')->where('user_id',$user->id)->get();
+        return view('profile.snack')->withUser($user)
+                             ->with(compact('snacks'));
+        
+        
+    }
+
+    
+    public function mood($username)
+    {
+        $user = User::where('username', $username)->first();
+        $moods = DB::table('moods')->where('user_id',$user->id)->get();
+        return view('profile.mood')->withUser($user)
+                             ->with(compact('moods'));
+        
+        
+    }
+
+    
+    public function drink($username)
+    {
+        $user = User::where('username', $username)->first();
+        $drinks = DB::table('drinks')->where('user_id',$user->id)->get();
+        return view('profile.drink')->withUser($user)
+                             ->with(compact('drinks'));
+        
+        
+    }
+
+    
+    public function workout($username)
+    {
+        $user = User::where('username', $username)->first();
+        $workouts = DB::table('workouts')->where('user_id',$user->id)->get();
+        return view('profile.workout')->withUser($user)
+                             ->with(compact('workouts'));
+        
+        
+    }
+
+    public function sleep($username)
+    {
+        $user = User::where('username', $username)->first();
+        $sleeps = DB::table('sleeps')->where('user_id',$user->id)->get();
+        return view('profile.sleep')->withUser($user)
+                             ->with(compact('sleeps'));
+        
+        
+    }
     public function edit($username) {
         $user = User::where('username', $username)->first();
         return view('profile.edit')->withUser($user);
@@ -24,8 +94,8 @@ class ProfilesController extends Controller
         $user = User::where('username', $username)->first();
 
         // if user tries to edit someone else's profile
-        if ($user->id !== Auth::user()->id) {
-            return redirect('profile/'.$user->username);
+        if (!isset($user) || ($user->id !== Auth::user()->id)) {
+            return redirect('profile/'.Auth::user()->username);
         }
 
         $updated = [
@@ -44,6 +114,36 @@ class ProfilesController extends Controller
 
         $user->update($updated);
 
-        return redirect('profile/'.$user->username)->with('success', 'Profile Updated Successfully');
+        return redirect('profile/'.Auth::user()->username)->with('success', 'Profile Updated Successfully');
     }
+
+    public function updateImage(Request $request, $username) {
+        $user = User::where('username', $username)->first();
+
+        // deny unauthorized updates
+        if (!isset($user) || ($user->id !== Auth::user()->id)) {
+            return redirect('profile/'.Auth::user()->username);
+        }
+
+        // validate file upload request
+        $this->validate($request, [
+            'profile_image'=>['required', 'image', 'mimes:jpeg,jpg,png', 'min:20', 'max:2048'],
+        ]);
+
+        // put the file into the filesystem and update the profile_image field in the database with the new filename.
+        if ($file = $request->file('profile_image')) {
+           $destPath = '../public/images/user/';
+           $profileImage = $_SERVER['REQUEST_TIME'].".".$file->getClientOriginalExtension();
+           $file->move($destPath, $profileImage);
+           $update = [
+                'profile_image' => "$profileImage",
+           ];
+        } 
+
+        $user->Update($update);
+
+        return redirect('/profile/'.Auth::user()->username)->with('success', 'Profile Picture updated!');
+    }
+
+
 }

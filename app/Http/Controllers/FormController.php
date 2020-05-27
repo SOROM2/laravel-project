@@ -25,20 +25,26 @@ class FormController extends Controller
 //store a users workout
     public function store(Request $request)
     {
+        // update last updated
+        $updateDate = [
+            'last_updated' => date('n/j/Y'),
+        ];
+        Auth::user()->update($updateDate);
+
         $formData=request()->all();
         if(isset($formData['workout']))
-{
-        $workout = new Workout();
-	    $workout->date=$request->get('date');
-        $workout->type=$request->get('type');
-        $workout->minutes=$request->get('minutes');
-        $workout->kilometres=$request->get('kilometres');
-        //the user id is the current users id
-        $workout->user_id=auth()->id();
-        $workout->save();
+        {
+            $workout = new Workout();
+            $workout->date=$request->get('date');
+            $workout->type=$request->get('type');
+            $workout->minutes=$request->get('minutes');
+            $workout->kilometres=$request->get('kilometres');
+            //the user id is the current users id
+            $workout->user_id=auth()->id();
+            $workout->save();
 
-        return redirect('home')->with('success','Your workout has been recorded');
-}
+            return redirect('home')->with('success','Your workout has been recorded');
+        }
 //store a users drinks
     if(isset($formData['drink']))
     {
@@ -221,6 +227,11 @@ if(isset($formData['height']))
     if(isset($formData['coachMood']))
     {
         $moods = Mood::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($moods == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any mood values yet.');
+        }
+
         $lastLevel=$moods->level;
        
         if($lastLevel > 6)
@@ -237,6 +248,11 @@ if(isset($formData['height']))
     if(isset($formData['coachSleep']))
     {
         $sleeps = Sleep::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($sleeps == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any sleep values yet.');
+        }
+
         $lastHours=$sleeps->hours;
         
         if($lastHours > 6)
@@ -253,6 +269,11 @@ if(isset($formData['height']))
     if(isset($formData['coachWorkout']))
     {
         $workouts = Workout::where('user_id',auth()->id())->orderBy('date','desc')->first();
+
+        if ($workouts == null) {
+            return redirect('home')->with('warning', 'You haven\'t entered any workout values yet.');
+        }
+
         $lastWorkout=$workouts->minutes;
         
         if($lastWorkout > 29)

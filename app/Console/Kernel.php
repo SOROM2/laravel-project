@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SiteUsage;
+use App\User;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +27,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // daily site usage emails
+        $schedule->call(function() {
+            $date = \Carbon\Carbon::today()->subDays(7);                // get the date from a week ago
+            $users = User::where('last_updated', '<=', $date)->get();   // get the users with last updated values older than a week ago (null is opt-out)
+            foreach ($users as $user) {
+                if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {  // filter valid emails ==(this needs to be fixed with the register and profile email validation)==
+                    $user->notify(new SiteUsage());                     // send a site usage email to each of those users.
+                }
+            }
+        })->dailyAt('10:00');   // every day at 10am local time.
+
     }
 
     /**

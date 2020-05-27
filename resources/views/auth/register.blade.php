@@ -79,7 +79,7 @@
 
                         <div class="form-group row">
 
-                            <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Curret Height - Centimeters') }}</label>
+                            <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Current Height - Centimeters') }}</label>
 
                             <div class="col-md-6">
                                 <input id="height" type="number" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required autocomplete="height">
@@ -93,8 +93,10 @@
                         </div>
 
                         <div class="form-group row">
-                        
-                        <div class="col-lg-6">
+
+                        <label class="col-md-4 col-form-label text-md-right">Gender</label> 
+
+                        <div class="col-md-6">
                             <input  type="radio" id="male" name="gender" value="male">
                             <label class="radiolabel" for="male">{{ __('Male') }}</label>
 

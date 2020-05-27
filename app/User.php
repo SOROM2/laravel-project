@@ -8,9 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable /*implements MustVerifyEmail*/
 {
     use Notifiable;
+
     public $timestamps = false;
 
     public function workouts()
@@ -38,15 +39,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Weight');
     }
 
-
-
     public function friends()
 	{
 		return $this->belongsToMany(User::class, 'friends_users', 'user_id', 'friend_id');
     }
-
-    
-    
 
     /**
      * The attributes that are mass assignable.
@@ -54,7 +50,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'weightStarting', 'height', 'gender', 'biography'
+        'name', 'email', 'password', 'username', 'weightStarting', 'height', 'gender', 'biography', 'profile_image'
     ];
 
     /**

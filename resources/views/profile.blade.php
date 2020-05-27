@@ -12,29 +12,43 @@
 
 <div class="row py-5 px-4">
     <div class="col-xl-6 col-md-6 col-sm-10 mx-auto">
-
+    <h3 class="text-center">  {{$user->name}} </h3>
     <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-secondary">
                 <div class="media align-items-end profile-header">
-                    <div class="media-body mb-5 text-white text-center">
-                        <h4 class="mt-0 mb-0">{{$user->name}}</h4></br>
-                        <h5 class="mt-0 mb-0">Email: {{$user->email}}</h5></br>
-                        <h5 class="mt-0 mb-0">Gender: {{$user->gender}}</h5></br>
-                        <h5 class="mt-0 mb-0">Starting Weight: {{$user->weightStarting}}</h5></br>
-                        <h5 class="mt-0 mb-0">Height: {{$user->height}}</h5></br>
+                    <div class="media-body mb-5 text-center">
+                    <br>
+                        <div class="col-md-12 text-center">
+                            @if (isset($user->profile_image))
+                                <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="User profile image" src="/images/user/{{ $user->profile_image }}">
+                            @else
+                                <img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
+                            @endif
+                        </div>     
+                        <br>
+                        <h5 class="mt-0 mb-0 text-white">Email: {{$user->email}}</h5></br>
+                        <h5 class="mt-0 mb-0 text-white">Gender: {{$user->gender}}</h5></br>
+                        <h5 class="mt-0 mb-0 text-white">Starting Weight: {{$user->weightStarting}} Kg</h5>
+                        <h5 class="mt-0 mb-0 text-white">Current Weight: {{is_null($currentWeight) ? $user->weightStarting : $currentWeight->Kilograms }} Kg</h5></br>
+                        <h5 class="mt-0 mb-0 text-white">Starting Height: {{$user->height}} Cm</h5>
+                        <h5 class="mt-0 mb-0 text-white">Current Height: {{is_null($currentHeight) ? $user->height : $currentHeight->centimeters }} Cm</h5></br>                            
+
+
                         @if ( isset($user->biography) )
-                            <h5 class="mt-0 mb-0">Bio:</h5></br>
-                            <p>{{$user->biography}}</p>
+                            <h5 class="mt-0 mb-0 text-white">Bio:</h5></br>
+                            <p class="text-white">{{$user->biography}}</p>
                         @endif
                         
                     </div>                  
-                </div>
-                <div class="col-md-12 text-center">
-			<img class="rounded-circle col-xl-6 col-md-6 col-sm-10 mx-auto" alt="Bootstrap Image Preview" src="{{ asset('images/Home.jpg') }}"/>
-		</div>         
+                </div> 
             @if ($user->id === Auth::user()->id)
                 <a href="/profile/{{$user->username}}/edit" class="btn btn-primary">Edit Profile</a>
             @endif
+            <a href="/profile/{{$user->username}}/mood" class="btn btn-primary">Mood</a>
+            <a href="/profile/{{$user->username}}/sleep" class="btn btn-primary">Sleep</a>
+            <a href="/profile/{{$user->username}}/drink" class="btn btn-primary">Drinks</a>
+            <a href="/profile/{{$user->username}}/snack" class="btn btn-primary">Snacks</a>
+            <a href="/profile/{{$user->username}}/workout" class="btn btn-primary">Workouts</a>
             </div>      
 
        </div>
